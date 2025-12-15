@@ -1,0 +1,118 @@
+@model ProfileUserModel;
+@{
+    Layout = "_LayoutClient";
+}
+<div class="grid wide">
+    <div class="row">
+        <div class="col col-3 ">
+            <div class="h-100 bg-light">
+                <ul class="py-5 px-2">
+                    <li class="border p-2 rounded my-1">
+                        <a asp-area="Identity" asp-controller="Manage" asp-action="ProfileUser">
+                            <div class="item-category actives"><i class="fa-regular fa-address-card px-2"></i> Thông tin
+                                cá nhân</div>
+                        </a>
+                    </li>
+
+                    <li class="border p-2 rounded my-1">
+                        <a asp-area="Identity" asp-controller="Manage" asp-action="OrdersUser">
+                            <div class=""><i class="fa-solid fa-truck-moving px-2"></i> Trạng thái đơn hàng</div>
+                        </a>
+                    </li>
+                    <li class="border p-2 rounded my-1">
+                        <a asp-area="Identity" asp-controller="Manage" asp-action="HistoryOrder">
+                            <div class="item-category"><i class="fa-solid fa-clock-rotate-left px-2"></i> Lịch sử mua
+                        hàng</div>
+                        </a>
+                    </li>
+                    <li class="border p-2 rounded my-1">
+                        <a asp-area="Identity" asp-controller="Manage" asp-action="ChangePassword">
+                            <div class=""><i class="fa-solid fa-key px-2"></i>Thay đổi mật khẩu</div>
+                        </a>
+                    </li>
+                    <li class="border p-2 rounded my-1"><i class="fa-solid fa-right-from-bracket px-2"></i> Thoát tài
+                        khoản</li>
+                </ul>
+            </div>
+        </div>
+        <div class="col col-9 ">
+            <div class="    ">
+                <form class="form-account w-100 h-100">
+                    <div class="p-1 d-flex justify-content-center">
+                        <div class="d-flex text-center align-items-center" style="flex-direction: column;">
+                            <div class="box-img-user" >
+                                <img class="" id="previewImage" height=100% width=100%
+                                    src="/images/user-profile.png" class=" px-2" />
+                                <input  id="fileInput" name="file" type="file" class="d-none" readonly/>
+                            </div>
+                            <label for="fileInput" class="box-shadow label-s d-inline px-2 my-3">Thay ảnh</label>
+                        </div>
+                    </div>
+                    <div class="form-field w-100">
+                        <input readonly name="fullname" asp-for="FullName"
+                            class="rounded form-control form-input border-button-input" placeholder=" " />
+                        <span class="form-label">@Html.DisplayNameFor(model => model.FullName)</span>
+                        <span asp-validation-for="FullName" class="text-danger"></span>
+                    </div>
+                    <div class="form-field w-100 ">
+                        <input readonly name="email" asp-for="Email"
+                            class="rounded form-control form-input border-button-input" placeholder=" " />
+                        <span class="form-label">@Html.DisplayNameFor(model => model.Email)</span>
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-field w-100 ">
+                        <input readonly name="creationDate" asp-for="CreationDate"
+                            class="rounded form-control form-input border-button-input" placeholder=" " />
+                        @* <span class="form-label"></span> *@
+                        <span asp-validation-for="CreationDate" class="text-danger"></span>
+                    </div>
+                    <div class="form-field w-100 ">
+                        <input readonly name="phoneNumber" asp-for="PhoneNumber"
+                            class="rounded form-control form-input border-button-input" placeholder=" " />
+                        <span class="form-label">@Html.DisplayNameFor(model => model.PhoneNumber)</span>
+                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-field w-100 ">
+                        <input readonly name="address" asp-for="Address"
+                            class="rounded form-control form-input border-button-input" placeholder=" " />
+                        <span class="form-label">@Html.DisplayNameFor(model => model.Address)</span>
+                        <span asp-validation-for="Address" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-field w-100 ">
+                        <input readonly name="birthDay" asp-for="BirthDay"
+                            class="rounded form-control form-input border-button-input" placeholder=" " />
+                        @* <span class="form-label">@Html.DisplayNameFor(model => model.BirthDay)</span> *@
+                        <span asp-validation-for="BirthDay" class="text-danger"></span>
+                    </div>
+                    <div class="form-field w-100  d-flex justify-content-center ">
+                        <span>Giới tính: </span>
+                        <div class="px-3">
+                            <label for="maleRadio">Nam</label>
+                            <input readonly type="radio" id="maleRadio" name="male" value="1" />
+                        </div>
+                        <div class="px-3">
+                            <label for="femaleRadio">Nữ</label>
+                            <input readonly type="radio" id="femaleRadio" name="male" value="0" />
+                        </div>
+                        <div class="px-3">
+                            <label for="femaleRadio">Khác</label>
+                            <input readonly type="radio" id="notGender" name="male" value="2" />
+                        </div>
+                        <span asp-validation-for="Gender" class="text-danger"></span>
+                    </div>
+                    <div>
+                        <button id="EditProfile" type="button" class="btn-submit px-2">Chỉnh sửa thông tin</button>
+                        <button name="buttonSubmit" type="button" class="btn-submit px-2 d-none">Lưu cập nhật</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="toast"></div>
+
+</script>
+<script type="module" src="~/js/ProfileUser.js"></script>

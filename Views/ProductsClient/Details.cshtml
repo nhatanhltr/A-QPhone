@@ -1,0 +1,181 @@
+@model ProductModel
+<style>
+    body {
+        background: #eee;
+        color: #000;
+        margin: 0;
+        padding: 0;
+    }
+
+    .swiper-container {
+        width: 100%;
+        margin: 20px auto;
+    }
+
+    .swiper-slide-container {
+        text-align: center;
+        font-size: 18px;
+        background: #fff;
+        height: 100%;
+        max-width: 600px;
+        /* Center slide text vertically */
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+    }
+
+    .gallery-top .swiper-slide {
+        width: 40%;
+        padding: 0;
+    }
+
+    .gallery-top .swiper-slide-active {
+        opacity: 1;
+        padding: 20px 0;
+        width: 96.7% !important;
+        height: 300px !important;
+    }
+
+    .gallery-thumbs {
+        box-sizing: border-box;
+        padding: 10px 0;
+    }
+
+    .gallery-thumbs .swiper-slide {
+        width: 10%;
+        opacity: 0.5;
+        padding: 0;
+        padding: 10px;
+
+    }
+
+    .gallery-thumbs .swiper-slide-active {
+        opacity: 1;
+    @*width:100%!important;*@
+    }
+</style>
+
+<div class="grid wide">
+    <div class="row">
+        <div class="col l-6">
+            <body>
+                <div class="swiper-container gallery-top" style="overflow: hidden;">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="swiper-slide-container">
+                                <img src="@Model.Image" alt="">
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="swiper-slide-container">
+                                <img src="~/images/products/ip2.jpg" alt="">
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="swiper-slide-container">
+                                @* <img src="~/images/test/details/thumb-3.jpg" alt=""> *@
+                                <img src="~/images/products/ip3.jpg" alt="">
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="swiper-slide-container">
+                                @* <img src="~/images/test/details/thumb-4.jpg" alt=""> *@
+                                <img src="~/images/products/ip4.jpg" alt="">
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- Add Arrows -->
+
+                </div>
+                <div class="swiper-container gallery-thumbs " style="overflow: hidden;">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="swiper-slide-container">
+                                <img src="@Model.Image" alt="">
+
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="swiper-slide-container">
+                                <img src="~/images/products/ip3.jpg" alt="">
+
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="swiper-slide-container">
+                                <img width="100%" src="~/images/test/details/thumb-3.jpg" alt="">
+
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="swiper-slide-container">
+                                <img width="100%" src="~/images/test/details/thumb-4.jpg" alt="">
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </body>
+        </div>
+        <div class="col l-6 mt-5">
+                <div class="ps-lg-3">
+                    <h3 class="title text-dark">@Model.Title</h3>
+
+                    <div class="mb-3">
+                        <h4 class=" text-danger">@Functions.VNĐ(@Model.Price) đ</h4>
+                    </div>
+                    <div class="row">
+                        <dt class="col-3">Type:</dt>
+                        <dd class="col-9">Regular</dd>
+
+                        <dt class="col-3">Color</dt>
+                        <dd class="col-9">Brown</dd>
+
+                        <dt class="col-3">Material</dt>
+                        <dd class="col-9">Cotton, Jeans</dd>
+
+                        <dt class="col-3">Brand</dt>
+                        <dd class="col-9">Reebook</dd>
+                    </div>
+
+                    <hr />
+
+                    <div class="row mb-4 d-flex align-items-center justify-content-center">
+                        <div class="mr-4">Số lượng: </div>
+                        <div>
+                            <button class=" border-0 p-1"><i class="ti-minus "></i></button>
+                            <input type="text" class="text-center p-1" placeholder="1" style="width: 70px;">
+                            <button class=" border-0 p-1"><i class="ti-plus "></i></button>
+                        </div>
+                    </div>
+                    <a href="#" class="btn btn-warning box-shadow button"> Mua ngay </a>
+                    <button class="add-carts btn btn-primary box-shadow button"> <i class="me-1 fa fa-shopping-basket"></i>
+                        Thêm giỏ hàng
+                    </button>
+                    <a href="#" class="btn btn-light border box-shadow button border-secondary py-2 icon-hover px-3"> <i
+                            class="me-1 fa fa-heart fa-lg"></i> Save </a>
+                </div>
+        </div>
+    </div>
+</div>
+<!-- content -->
+<div id="toast"></div>
+
+@await Component.InvokeAsync("SwiperProducts")
+
+
+<!-- Swiper -->
+
+<script type="module" src="~/js/Products/ProductDetails.js"></script>

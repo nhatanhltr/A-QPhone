@@ -1,0 +1,53 @@
+@Html.AntiForgeryToken()
+<div class="container-fluid">
+    <div class="row">
+        <div class="card rounded mb-0 w-100">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb text-dark bg-white mb-0">
+                    <li class="px-2 text-dark"><a href="#">Trang chủ <i class="fa-solid fa-chevron-right"></i></a></li>
+                    <li class="px-2 text-dark active" aria-current="page">Quyền truy cập</li>
+                </ol>
+            </nav>
+
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 px-0">
+            <div class="card rounded">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h4 class="card-title">Quyền truy cập</h4>
+                        <div class="mb-2">
+                            <button class="box-shadow button create-role"><i class="fa-solid fa-plus mr-2"></i>Tạo role
+                                mới</button>
+                            <a class="box-shadow button bg-white text-dark ml-3" asp-area="Identity"
+                                asp-controller="User" asp-action="Index"><i
+                                    class="fa-solid fa-circle-right mr-2"></i>Người dùng</a>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered zero-configuration">
+                            <thead>
+                                <tr class="text-center">
+                                    <th>STT</th>
+                                    <th>Tên vai trò (Roles)</th>
+                                    <th>Mô tả</th>
+                                    <th>Chức năng</th>
+                                </tr>
+                            </thead>
+                            <tbody class="list">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="toast"></div>
+
+<body>
+    <script type="module" src="~/js/roles.js"></script>
+</body>

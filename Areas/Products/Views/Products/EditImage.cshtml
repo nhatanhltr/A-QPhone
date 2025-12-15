@@ -1,0 +1,111 @@
+@model ProductEditImageModel
+
+@Html.AntiForgeryToken()
+<div class="container-fluid">
+    <link rel="stylesheet" href="~/lib/froala-editor/css/froala_editor.pkgd.min.css">
+    <div class="row">
+        <div class="card rounded mb-0 w-100">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb text-dark bg-white mb-0">
+                    <li class="px-2 text-dark"><a href="#">Trang chủ <i class="fa-solid fa-chevron-right"></i></a></li>
+                    <li class="px-2 text-dark"><a href="/admin/products/index">Quản lý sản phẩm <i
+                                class="fa-solid fa-chevron-right"></i></a></li>
+                    <li class="px-2 text-dark active" aria-current="page">Thêm mới sản phẩm</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 p-0">
+            <div class="card rounded">
+                <div class="card-body">
+                    <h3 class="text-center animation-text">Thông tin cơ bản</h3>
+                    <form action="post" id="Create">
+                        <div class="row">
+                            <div class="col l-3 box-shadow">
+                                <div class="row ">
+                                    <div class="col col-12">
+                                        <div class=" w-100 d-flex justify-content-center  p-2 h-100">
+                                            <div class="d-flex text-center align-items-center"
+                                                style="flex-direction: column;">
+                                                <img id="previewImage" height=100% width=150
+                                                    src="@Model.product.Image" class=" px-2" />
+                                                <input id="fileInput" name="file" type="file" class="d-none" />
+                                                <label for="fileInput"
+                                                    class="box-shadow label-s d-inline px-2 my-3">Chọn
+                                                    Tệp</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col col-12">
+                                        <span>Lưu ý: (<span class="text-danger">*</span>) không được để trống</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col l-9">
+                                <div class="box-shadow p-2">
+                                    <div class="row">
+                                        
+
+                                        <div class="col col-12">
+                                            <div class="form-group form-field ">
+                                                <input value="@Model.product.Title" id="name" name="Title" type="text"
+                                                    placeholder=" " class=" form-input form-error form-control " readonly>
+                                                <label for="name" class="form-label">Tên sản phẩm (<span
+                                                        class="text-danger">*</span>) </label>
+                                                <span class="form-message"></span>
+                                            </div>
+                                        </div>
+
+                                        
+
+                                        <div class="col col-12 mt-5">
+                                            <div class="row">
+                                                <div class="col col-12">
+                                                    <h3 class="text-center animation-text">Hình ảnh sản phẩm</h3>
+                                                    <div class="form-group form-field">
+                                                        <input type="file" multiple id="fileInputs" >
+                                                        <div id="imageContainer" class="row py-3">
+                                                            @foreach(var i in @Model.Images){
+                                                                <div class="col col-4">
+                                                                   <div class="col col-3 w-100 h-100 " style=" position: relative;">
+                                                                    <img src="@i.FileName" class="imageContainer-product-img" alt="">
+                                                                    <button class="imageContainer-product-img-button">X</button>
+                                                                   </div>
+                                                                </div>
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @* <div class="col col-12">
+
+                                            <div class="d-flex justify-content-around">
+                                                <button type="button" class=" box-shadow px-3 ">Hủy</button>
+                                                <button type="submit"
+                                                    class="button-ainmate form-submit button box-shadow px-3">Thêm
+                                                    mới</button>
+                                            </div>
+                                        </div> *@
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="toast"></div>
+<script>
+    
+</script>
+
+<script src="~/lib/froala-editor/js/froala_editor.pkgd.min.js"></script>
+
+<script type="module" src="~/js/Products/Create.js"></script>

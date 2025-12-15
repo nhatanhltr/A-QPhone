@@ -1,0 +1,104 @@
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="card rounded mb-0 w-100">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb text-dark bg-white mb-0">
+                    <li class="px-2 text-dark"><a href="#">Trang chủ <i class="fa-solid fa-chevron-right"></i></a></li>
+                    <li class="px-2 text-dark active" aria-current="page">Nhập hàng</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 p-0">
+            <div class="card rounded">
+                <div class="card-body">
+                    <form action="">
+                        <div class="row">
+                            <div class="col l-8">
+                                <div class=" p-1"
+                                    style="box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px; border-radius: 4px;">
+                                    <h4 class="text-center animation-text">Thông tin cơ bản</h4>
+                                    <button type="button" class="create button mb-2"> <i
+                                            class="fa-solid fa-plus mr-2"></i>Thêm sản phẩm</button>
+                                    <button title="Xóa tất cả" type="button" class="clean float-right button mb-2 bg-danger"> <i
+                                            class="fa-solid fa-trash"></i></button>
+                                    <table class="table  text-center bg-white ">
+                                        <tr>
+                                            <th>Sản phẩm</th>
+                                            <th class="w-25">Giá nhập</th>
+                                            <th class="">Số lượng</th>
+                                        </tr>
+                                        <tbody class="listprImport">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col l-4 ">
+                                <div class="p-1"
+                                    style="box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px; border-radius: 4px;">
+                                    <h4 class="text-center animation-text">Nhà cung cấp</h4>
+                                    <div class="row ">
+                                        <div class="col col-12">
+                                            <select id="supplier" class="w-100" multiple="multiple"></select>
+                                        </div>
+                                        <div class="supplierImport">
+
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <h4 class="text-center animation-text">Thông kê đơn hàng</h4>
+                                    <hr>
+                                    <div class="row mt-2">
+                                        <div class="col col-12 ">
+                                            <div class="">
+                                                <span class="">Tổng số lượng sản phẩm:</span>
+                                                <span class="font-weight-bold text-red show-totalQuantity"></span>
+                                            </div>
+                                            <hr>
+                                            <div class="">
+                                                <span class="">Tạm tính:</span>
+                                                <span class="font-weight-bold text-red show-totalPrice"></span>
+                                            </div>
+                                            <hr>
+                                            <div class="">
+                                                <span class="">Tổng thuế:</span>
+                                                <span class="font-weight-bold text-red show-totalTax"></span>
+                                            </div>
+
+                                            <hr>
+                                            <div class="border">
+                                                <span class="font-weight-bold">Tổng thành tiền:</span>
+                                                <span class="font-weight-bold text-red show-totalPay"></span>
+                                            </div>
+                                            
+                                            
+                                        </div>
+
+                                    </div>
+                                    <hr>
+                                    <div class="row mt-2">
+                                        <div class="col col-12 d-flex justify-content-between">
+                                            <button type="button" class="check_bill_import button mb-2 bg-info"><i class="fa-solid fa-check-to-slot mr-1"></i> Kiểm tra </button>
+                                            <button type="button" class="print_bill_import button mb-2 "><i class="fa-solid fa-print mr-1"></i> In hóa đơn</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="toast"></div>
+
+
+<script type="module" src="~/js/import/import.js"></script>
+<script type="module" src="~/js/Products/AddCart.js"></script>

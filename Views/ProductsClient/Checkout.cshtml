@@ -1,0 +1,192 @@
+@model List<CartItem>
+@Html.AntiForgeryToken()
+<body class="bg-light pt-4">
+    <div class="container grid wide">
+        <div class="row bg-white">
+            <div class=" p-3 mb-5 bg-body rounded col-md-6 order-md-2 mb-4 ">
+                <h4 class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="text-muted">Giỏ hàng của bạn</span>
+                </h4>
+                <ul class="list-group mb-3">
+                    <table class="table table-hover text-center">
+                        <thead>
+                            <tr class="border-only-bottom">
+                                <th>STT</th>
+                                <th>Hình ảnh</th>
+                                <th>Tên sản phẩm</th>
+                                <th>Số lượng</th>
+                                <th>Giá</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @{
+                                decimal total = 0; int quantity = 0; int count = 1;
+                            }
+                            @foreach (var i in Model)
+                            {
+                                <tr class="pr-item">
+                                    <td>@(count++)</td>
+                                    <td><img height="40px" src="@i.product.Image" class="mr-2"></img></td>
+                                    <td>
+                                        <h6 class="my-0"><a class="id-pr" asp-controller="productsclient" asp-action="Details"
+                                                asp-route-slug="@i.product.Slugp">@i.product.Title</a></h6>
+                                    </td>
+                                    <td class="quantity">@i.quantity</td>
+                                    <td><span class="ml-2 text-danger font-weight-bold"
+                                            title="@Functions.VNĐ(@i.product.Price * @i.quantity)">@Functions.VNĐ(@i.product.Price)đ</span>
+                                    </td>
+                                </tr>
+                                var sum = i.quantity * i.product.Price;
+                                quantity += i.quantity;
+                                total += sum;
+                            }
+
+                        </tbody>
+                    </table>
+                    <li class="list-group-item d-flex justify-content-between my-3">
+                        <span>Tổng tiền (VND)</span>
+                        <span>Số lượng: @quantity (sản phẩm)</span>
+                        <strong class="text-danger">@Functions.VNĐ(total) đ</strong>
+                    </li>
+                    <li>
+                        <a asp-controller="productsclient" asp-action="cart" class="btn-lg box-shadow my-3">Trở về giỏ
+                            hàng</a>
+                    </li>
+                </ul>
+
+
+            </div>
+
+            <div class="col-md-6 order-md-1 p-3 mb-5 bg-body rounded scrollable-box">
+                <h4 class="mb-3 text-muted">Thông tin thanh toán</h4>
+                <form method="post" id="checkout">
+                    <div class="shadow p-3 mb-5 bg-body rounded p-3">
+                        <h4 class="text-center">Thông tin khách hàng</h4>
+                        <div class="row">
+                            <div class=" col-12">
+                                <div class="form-group form-field">
+                                    <input id="name" name="fullname" rule="required" type="text" placeholder=" "
+                                        class="form-input form-error">
+                                    <label class="form-label">Họ và tên (<span class="text-danger">*</span>)</label>
+                                    <span class="form-message"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="form-group form-field">
+                                    <input id="name" name="phoneNumber" rule="required" type="text" placeholder=" "
+                                        class="form-input form-error">
+                                    <label class="form-label">Số điện thoại (<span class="text-danger">*</span>)</label>
+                                    <span class="form-message"></span>
+                                </div>
+                            </div>
+                            <div class=" col-12">
+                                <div class="form-group form-field">
+                                    <input id="name" name="email" rule="required" type="text" placeholder=" "
+                                        class="form-input form-error">
+                                    <label class="form-label">Email (<span class="text-danger">*</span>)</label>
+                                    <span class="form-message"></span>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <h6 class="text-center">Thông tin sẽ được gửi tới địa chỉ Email trên</h6>
+
+                    </div>
+
+
+                    <div class="p-2 shadow p-3 mb-5 bg-body rounded my-3">
+                        <h4 class="text-center">Thông tin nhận hàng</h4>
+                        <div class="row">
+                            <div class="col-md-12 mb-3" style="padding: 0 35px;">
+                                <label for="city">Tỉnh/ Thành phố (<span class="text-danger">*</span>)</label>
+                                <select class=" d-block w-100" id="city" multiple>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row ">
+                            <div class="col-6  mb-3" style="padding-left: 35px;">
+                                <label for="district">Quận/ Huyện (<span class="text-danger">*</span>)</label>
+                                <select class=" custom-select d-block w-100" id="district" required>
+
+                                </select>
+                            </div>
+                            <div class="col-6 mb-3" style="padding-right: 35px;">
+                                <label for="wards">Phường/ Xã (<span class="text-danger">*</span>)</label>
+                                <select class="custom-select d-block w-100" id="wards" required>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row d-flex justify-content-between">
+                            <div class="mb-6 col-12">
+                                <div class="form-group form-field">
+                                    <input id="name" name="Address" rule="required" type="text" placeholder=" "
+                                        class="form-input form-error">
+                                    <label class="form-label">Địa chỉ (<span class="text-danger">*</span>)</label>
+                                    <span class="form-message"></span>
+                                </div>
+                            </div>
+                            <div class="mb-6 col-12">
+                                <div class="form-group form-field">
+                                    <input id="notes" name="notes" type="text" placeholder=" "
+                                        class="form-input form-error">
+                                    <label class="form-label">Ghi chú thêm</label>
+                                    <span class="form-message"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-2 shadow p-3 mb-5 bg-body rounded my-3">
+                        <h4 class="text-center">Phương thức thanh toán</h4>
+                        <div class="row " style="padding: 0 20px;">
+                            <div class="col-md-12 mb-3">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" id="option1" name="options" class="custom-control-input"
+                                        value="option1" />
+                                    <label class="custom-control-label" for="option1"> Thanh toán khi nhận hàng</label>
+                                </div>
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" id="option2" name="options" class="custom-control-input"
+                                        value="option2" />
+                                    <label class="custom-control-label" for="option2"> Thanh toán qua VnPay</label>
+                                </div>
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" id="option3" name="options" class="custom-control-input"
+                                        value="option3" />
+                                    <label class="custom-control-label" for="option3">Thanh toán qua ngân hàng</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-2">
+                            <button class="box-shadow btn-lg" type="">Hủy</button>
+                        </div>
+                        <div class="col-10">
+                            <button class="btn-checkout btn-lg box-shadow " type="submit">Đặt hàng</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div id="toast"></div>
+        <script>
+            $(document).ready(function () {
+                $('.custom-control-input').change(function () {
+                    // Loại bỏ thuộc tính checked từ tất cả các checkbox khác
+                    $('.custom-control-input').not(this).prop('checked', false);
+                });
+            });
+        </script>
+        <script type="module" src="~/js/Products/Checkout.js"></script>
+</body>
+
+</html>

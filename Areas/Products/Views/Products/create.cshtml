@@ -1,0 +1,269 @@
+@Html.AntiForgeryToken()
+<div class="container-fluid">
+    <link rel="stylesheet" href="~/lib/froala-editor/css/froala_editor.pkgd.min.css">
+    <div class="row">
+        <div class="card rounded mb-0 w-100">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb text-dark bg-white mb-0">
+                    <li class="px-2 text-dark"><a href="#">Trang chủ <i class="fa-solid fa-chevron-right"></i></a></li>
+                    <li class="px-2 text-dark"><a href="/admin/products/index">Quản lý sản phẩm <i
+                                class="fa-solid fa-chevron-right"></i></a></li>
+                    <li class="px-2 text-dark active" aria-current="page">Thêm mới sản phẩm</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 p-0">
+            <div class="card rounded">
+                <div class="card-body">
+                    <h3 class="text-center animation-text">Thông tin cơ bản</h3>
+                    <form action="post" id="Create">
+                        <div class="row">
+                            <div class="col l-3 box-shadow">
+                                <div class="row ">
+                                    <div class="col col-12">
+                                        <div class=" w-100 d-flex justify-content-center  p-2 h-100">
+                                            <div class="d-flex text-center align-items-center"
+                                                style="flex-direction: column;">
+                                                <img id="previewImage" height=100% width=150
+                                                    src="/images/icons8-iphone-14-100.png" class=" px-2" />
+                                                <input id="fileInput" name="file" type="file" class="d-none" />
+                                                <label for="fileInput"
+                                                    class="box-shadow label-s d-inline px-2 my-3">Chọn
+                                                    Tệp</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col col-12">
+                                        <span>Lưu ý: (<span class="text-danger">*</span>) không được để trống</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col l-9">
+                                <div class="box-shadow p-2">
+                                    <div class="row">
+                                        <div class="col col-12">
+                                            <select id="multiple" class="select w-100" multiple="multiple">
+                                            </select>
+                                        </div>
+
+                                        <div class="col col-12">
+                                            <div class="form-group form-field ">
+                                                <input id="name" name="Title" rule="required" type="text"
+                                                    placeholder=" " class=" form-input form-error form-control ">
+                                                <label for="name" class="form-label">Tên sản phẩm (<span
+                                                        class="text-danger">*</span>) </label>
+                                                <span class="form-message"></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="col col-12">
+                                            <div class="row">
+                                                <div class="col col-6">
+                                                    <div class="form-group form-field ">
+                                                        <input  id="name"
+                                                            name="Price" rule="required" placeholder=" "
+                                                            class="pnewPrice price form-input form-error form-control ">
+                                                        <label for="name" class="form-label">Giá mới (<span
+                                                                class="text-danger">*</span>)</label>
+                                                        <span class="form-message"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col col-6">
+                                                    <div class="form-group form-field ">
+                                                        <input  id="name"
+                                                            name="PriceOld" rule="required" placeholder=" "
+                                                            class="poldPrice form-input form-error form-control ">
+                                                        <label for="name" class="form-label">Giá cũ (<span
+                                                                class="text-danger">*</span>)</label>
+                                                        <span class="form-message"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col col-12">
+                                            <div class="row">
+                                                <div class="col col-6">
+                                                    <div class="form-group form-field ">
+                                                        <input id="name" name="Ram" rule="required" type="text"
+                                                            placeholder=" "
+                                                            class=" form-input form-error form-control ">
+                                                        <label for="name" class="form-label">Bộ nhớ RAM (<span
+                                                                class="text-danger">*</span>)</label>
+                                                        <span class="form-message"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col col-6">
+                                                    <div class="form-group form-field ">
+                                                        <input id="name" name="Rom" rule="required" type="text"
+                                                            placeholder=" "
+                                                            class=" form-input form-error form-control ">
+                                                        <label for="name" class="form-label">Bộ nhớ ROM (<span
+                                                                class="text-danger">*</span>)</label>
+                                                        <span class="form-message"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col col-12">
+                                            <div class="row">
+                                                <div class="col col-6">
+                                                    <div class="form-group form-field ">
+                                                        <input id="name" name="Screen" rule="required" type="text"
+                                                            placeholder=" "
+                                                            class=" form-input form-error form-control ">
+                                                        <label for="name" class="form-label">Màn hình (<span
+                                                                class="text-danger">*</span>)</label>
+                                                        <span class="form-message"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col col-6">
+                                                    <div class="form-group form-field ">
+                                                        <input id="name" name="Camera" rule="required" type="text"
+                                                            placeholder=" "
+                                                            class=" form-input form-error form-control ">
+                                                        <label for="name" class="form-label">Camera (<span
+                                                                class="text-danger">*</span>)</label>
+                                                        <span class="form-message"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col col-12">
+                                            <div class="row">
+                                                <div class="col col-4">
+                                                    <div class="form-group form-field ">
+                                                        <input id="name" name="Security" rule="required" type="text"
+                                                            placeholder=" "
+                                                            class=" form-input form-error form-control ">
+                                                        <label for="name" class="form-label">Bảo mật (<span
+                                                                class="text-danger">*</span>)</label>
+                                                        <span class="form-message"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col col-4">
+                                                    <div class="form-group form-field ">
+                                                        <input id="name" name="Bettery" rule="required" type="text"
+                                                            placeholder=" "
+                                                            class=" form-input form-error form-control ">
+                                                        <label for="name" class="form-label">Dung lượng pin (<span
+                                                                class="text-danger">*</span>)</label>
+                                                        <span class="form-message"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col col-4">
+                                                    <div class="form-group form-field ">
+                                                        <input id="name" name="Warranty" rule="required" type="text"
+                                                            placeholder=" "
+                                                            class=" form-input form-error form-control ">
+                                                        <label for="name" class="form-label">Bảo hành (<span
+                                                                class="text-danger">*</span>)</label>
+                                                        <span class="form-message"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col col-12">
+                                            <div class="form-group form-field w-100  d-flex">
+                                                <div class="custom-checkbox ">
+                                                    <input id="check" name="check" type="checkbox">
+                                                    <label for="check" class="form-label"
+                                                        style="transform: translate(10px, -20px);">Hiển thị</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col col-12">
+                                            <div class="row">
+                                                <div class="col col-12">
+                                                    <div class="form-group form-field">
+                                                        <textarea id="Editor"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @* <div class="col col-12 mt-5">
+                                            <div class="row">
+                                                <div class="col col-12">
+                                                    <h3 class="text-center animation-text">Hình ảnh sản phẩm</h3>
+                                                    <div class="form-group form-field">
+                                                        <input type="file" multiple id="fileInputs">
+                                                        <div id="imageContainer" class="row py-3"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> *@
+                                        <div class="col col-12">
+
+                                            <div class="d-flex justify-content-around">
+                                                <button type="button" class=" box-shadow px-3 ">Hủy</button>
+                                                <button type="submit"
+                                                    class="button-ainmate form-submit button box-shadow px-3">Thêm
+                                                    mới</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="toast"></div>
+<script>
+     $('.pnewPrice').on('input', function() {
+       var value = $(this).val();
+        // Xóa tất cả các ký tự không phải số
+        value = value.replace(/\D/g, '');
+        // Nếu giá trị nhập vào rỗng, không làm gì cả
+        if(value === "") return;
+        // Giới hạn số chữ số nhập vào
+        if(value.length > 20) {
+            value = value.substr(0, 20);
+        }
+        // Định dạng lại giá trị thành tiền tệ Việt Nam
+        var formattedValue = numberWithCommas(value);
+        // Hiển thị giá trị đã được định dạng
+        $(this).val(formattedValue);
+    });
+
+     $('.poldPrice').on('input', function() {
+       var value = $(this).val();
+        // Xóa tất cả các ký tự không phải số
+        value = value.replace(/\D/g, '');
+        // Nếu giá trị nhập vào rỗng, không làm gì cả
+        if(value === "") return;
+        // Giới hạn số chữ số nhập vào
+        if(value.length > 20) {
+            value = value.substr(0, 20);
+        }
+        // Định dạng lại giá trị thành tiền tệ Việt Nam
+        var formattedValue = numberWithCommas(value);
+        // Hiển thị giá trị đã được định dạng
+        $(this).val(formattedValue);
+    });
+
+
+    
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+
+
+</script>
+
+
+<script src="~/lib/froala-editor/js/froala_editor.pkgd.min.js"></script>
+
+@* <script type="module" src="~/js/VND.js"></script> *@
+<script type="module" src="~/js/Products/Create.js"></script>

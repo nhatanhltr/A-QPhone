@@ -1,0 +1,93 @@
+.box-buy{
+    height: 50px;
+    transform: translateY(-50%);
+    position: absolute;
+    bottom: 0;
+    left: 30%;
+    display: flex;
+    right: 30%;
+    top: 50%;
+    align-items: center;
+}
+.buy{
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+    position: fixed;
+    bottom: 0;
+    left: 0%;
+    right: 0%;
+    background-color: white;
+}
+/* Add a style for the disabled button */
+.btn-checkout[disabled] {
+    /* You can adjust the styles to fit your design */
+    background-color: #ccc; /* Change the background color */
+    color: #888; /* Change the text color */
+    cursor: not-allowed; /* Change the cursor */
+}
+
+/* Add a style for the enabled button */
+.btn-checkout:not([disabled]) {
+    /* You can adjust the styles to fit your design */
+    background-color: #4CAF50; /* Change the background color */
+    color: white; /* Change the text color */
+    cursor: pointer; /* Change the cursor */
+}
+
+.quantity-item{
+    position: relative;
+    .quantity{
+        align-items: center;
+        display: flex;
+        position: absolute;
+        background-color: #fff;
+        height: 20px;
+        width: 20px;
+        border-radius: 50%;
+        justify-content: center;
+        top: -5px;
+        right: 51px;
+        color: red;
+    }
+}
+
+.border-only-top{
+    border-top: 1px solid #242424;
+}
+
+.border-only-bottom{
+    border-bottom: 1.5px solid #242424;
+}
+
+.border-only-right{
+    border-right: 1px solid #242424;
+}
+.border-only-left{
+    border-left: 1px solid #242424;
+}
+.scrollable-box{
+    overflow: auto;
+    height: 100vh;
+    &::-webkit-scrollbar{
+        width: 5px;
+    };
+    &::-webkit-scrollbar-thumb {
+        background-color: #c4c4c4; /* Màu của phần "nút" thanh cuộn */
+        border-radius: 5px; /* Độ cong góc của "nút" thanh cuộn */
+      }
+}
+
+
+  .custom-checkbox .custom-control-label::before {
+    border: 2px solid #a9a8a8; /* Màu đường viền của checkbox khi chưa được chọn */
+    background-color: #fff; /* Màu nền của checkbox khi chưa được chọn */
+  }
+
+  .custom-checkbox .custom-control-input:checked~.custom-control-label::before {
+    border: 2px solid #a9a8a8; /* Màu đường viền của checkbox khi đã được chọn */
+    background-color: #a9a8a8; /* Màu nền của checkbox khi đã được chọn */
+  }
+
+  .custom-checkbox .custom-control-label::after {
+    background-color: #a9a8a8; /* Màu dấu tích khi checkbox đã được chọn */
+  }

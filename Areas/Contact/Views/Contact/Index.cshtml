@@ -1,0 +1,47 @@
+@model IEnumerable<ContactModel>
+@Html.AntiForgeryToken()
+<div class="container-fluid">
+    <div class="row">
+        <div class="card rounded mb-0 w-100">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb text-dark bg-white mb-0">
+                    <li class="px-2 text-dark"><a href="#">Trang chủ <i class="fa-solid fa-chevron-right"></i></a></li>
+                    <li class="px-2 text-dark active" aria-current="page">Danh sách liên hệ</li>
+                </ol>
+            </nav>
+
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 px-0">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Danh sách liên hệ</h4>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered zero-configuration">
+                            <thead>
+                                <tr>
+                                    <th> @Html.DisplayNameFor(model => model.FullName)</th>
+                                    <th> @Html.DisplayNameFor(model => model.Email)</th>
+                                    <th> @Html.DisplayNameFor(model => model.DateSend)</th>
+                                    <th> @Html.DisplayNameFor(model => model.Status)</th>
+                                    <th> Chức năng</th>
+                                </tr>
+                            </thead>
+                            <tbody class="listContact">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="toast"></div>
+
+
+<body>
+    <script type="module" src='~/js/Contact.js'></script>
+</body>

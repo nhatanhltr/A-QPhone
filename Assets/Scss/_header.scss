@@ -1,0 +1,100 @@
+.menu-user {
+    position: relative;
+    &::after {
+        content: "";
+        height: 15px;
+        width: 50px;
+        position: absolute;
+        top: 33px;
+        left: 0;
+        width: 100%;
+        background-color: transparent;
+    }
+    .user {
+        // width: 150px;
+        overflow: hidden;
+        position: relative;
+    }
+    .user-info {
+        display: none;
+        position: absolute;
+        top: 45px;
+        right: 0;
+        box-shadow: 0px 0px 5px 0 rgba(0, 0, 0, 0.2);
+        width: 180px;
+        background-color: $bg-main;
+        padding: 10px;
+        
+        border-radius: 4px;
+        text-align: center;
+
+        .user-info-item {
+            padding-bottom: 5px;
+            padding-top: 8px;
+            width: 100%;
+            text-align: left;
+            border-bottom: 1px solid #ccc;
+            a{
+                color: #fff;
+            }
+            button{
+                background-color: transparent;
+                color: #fff;
+                border:none;
+            }
+        }
+    }
+    &:hover .user-info {
+        display: block;
+    }
+}
+
+.search{
+    border: 0;
+    border-radius: 0;
+    width: 250px;
+    color: #fff;
+    top: 0;
+    border-bottom: 1px solid white;
+}
+.data-search{
+    border-radius: 4px;
+    top: 49px;
+    width: 400px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0px 0px 5px 0 rgba(0, 0, 0, 0.2);
+    background-color: #fff;
+    max-height: 350px;
+    /* min-height: 434px; */
+    overflow-y: scroll;
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: #3498db #ecf0f1; /* Firefox */
+}
+.data-search::-webkit-scrollbar {
+    width: 2px;
+    background-color: rgb(4, 161, 161);
+}
+// .data-search::-webkit-scrollbar-track {
+//     background-color: #101010;
+// }
+.data-search::-webkit-scrollbar-thumb {
+    background-color: #f0f2f3;
+    border-radius: 8px;
+}
+
+.cart-header{
+    position: relative;
+    .cart-quantity{
+        text-align: center;
+        color: red;
+        line-height: 20px;
+        position: absolute;
+        top: -10px;
+        right: -5px;
+        background-color: #fff;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+    }
+}

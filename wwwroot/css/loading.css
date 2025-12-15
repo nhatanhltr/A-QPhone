@@ -1,0 +1,62 @@
+.loader-container{
+  position: fixed;
+  top: 0;bottom: 0;left: 0;right: 0;
+  background-color: rgba(0 , 0 , 0 , 0.07);
+}
+.loader {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+}
+.loader::before , .loader::after{
+  content: 'A&Q';
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+  color: #fff;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50% , -50%);
+  width: 48em;
+  height: 48em;
+  background-image:
+    radial-gradient(circle 6px, #D55A2A 100%, transparent 0),
+    radial-gradient(circle 6px, #D55A2A 100%, transparent 0),
+    radial-gradient(circle 6px, #D55A2A 100%, transparent 0),
+    radial-gradient(circle 6px, #D55A2A 100%, transparent 0),
+    radial-gradient(circle 6px, #D55A2A 100%, transparent 0),
+    radial-gradient(circle 6px, #D55A2A 100%, transparent 0),
+    radial-gradient(circle 6px, #D55A2A 100%, transparent 0),
+    radial-gradient(circle 6px, #D55A2A 100%, transparent 0);
+  background-position: 0em -18em, 0em 18em, 18em 0em, -18em 0em,
+                       13em -13em, -13em -13em, 13em 13em, -13em 13em;
+    background-repeat: no-repeat;
+  font-size: 0.5px;
+  border-radius: 50%;
+  animation: blast 1s ease-in infinite;
+}
+.loader::after {
+  font-size: 1px;
+  background: #D55A2A;
+  animation: bounce 1s ease-in infinite;
+}
+
+@keyframes bounce {
+  0% , 100%{ font-size: 0.55px }
+  50% { font-size: 1px }
+}
+@keyframes blast {
+  0% , 40% {
+    font-size: 0.5px;
+  }
+  70% {
+    opacity: 1;
+    font-size: 4px;
+  }
+   100% {
+     font-size: 6px;
+    opacity: 0;
+  }
+}

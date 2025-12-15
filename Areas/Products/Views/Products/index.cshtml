@@ -1,0 +1,105 @@
+@Html.AntiForgeryToken()
+@* <link rel="stylesheet" href="~/css/grid.css"> *@
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="card rounded mb-0 w-100">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb text-dark bg-white mb-0">
+                    <li class="px-2 text-dark"><a href="#">Trang chủ <i class="fa-solid fa-chevron-right"></i></a></li>
+                    <li class="px-2 text-dark active" aria-current="page">Quản lý sản phẩm</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 p-0">
+            <div class="card rounded">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-3 w-100">
+                        <div class="d-flex align-items-center w-50">
+                            <div class="form-field w-50 ">
+                                <input type="search" name="search" class=" value-search form-control form-input w-100"
+                                    placeholder=" " />
+                                <span class="form-label">Tìm kiếm</span>
+                            </div>
+                            <button class="btn-search box-shadow active px-2 py-1 rounded "><i class="fa-solid fa-magnifying-glass mx-2"></i></button>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <a asp-action="create" asp-controller="products" asp-area="products" class="create-post box-shadow button text-white"><i class="fa-solid fa-plus mx-2"></i> Thêm sản phẩm mới</a>
+                            <div>
+                                <a asp-action="index" asp-controller="CategoryProduct" asp-area="products"><i class="fa-solid fa-circle-arrow-right mx-2"></i> Quản lý chuyên mục</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center w-100 mb-4">
+                        <div class="d-flex align-items-center ">
+                            <h4 class="card-title totalUser m-0"></h4>
+                            <div class="d-flex align-items-center px-3">
+                                <span class="mx-1">Xem</span> <select id="multiple-quantity" class="" multiple="multiple">
+                                    <option value=5>5</option>
+                                    <option value=10 selected>10</option>
+                                    <option value=25>25</option>
+                                    <option value=50>50</option>
+                                </select> <span class="mx-1">mục</span>
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-items-center ">
+                            <div class="">sản phẩm bán chạy</div>
+                        </div>
+                        <div class="d-flex align-items-center ">
+                            <div class="">sản phẩm mới nhất</div>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table text-center table-striped table-bordered zero-configuration">
+                            <thead>
+                                <tr>
+                                    <th>STT</th>
+                                    <th>Tên sản phẩm</th>
+                                    <th>Hình ảnh</th>
+                                    <th>Giá mới</th>
+                                    <th>Giá cũ</th>
+                                    <th>Tồn kho</th>
+                                    <th>Trạng thái</th>
+                                    <th>Chức năng</th>
+                                </tr>
+                            </thead>
+                            <tbody class="list">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                 <div class=" d-flex justify-content-center">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                            @* <li class="">
+                                <button class="page-link Previous" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </button>
+                            </li> *@
+                            <div class="pageNumber d-flex justify-content-center">
+                            </div>
+                            @* <li class="">
+                                <button class="page-link Next" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </button>
+                            </li> *@
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="toast"></div>
+
+<body>
+    <script src="~/lib/froala-editor/js/froala_editor.pkgd.min.js"></script>
+
+    <script type="module" src="~/js/Products/Products.js"></script>
+</body>

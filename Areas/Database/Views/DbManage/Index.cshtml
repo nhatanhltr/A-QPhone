@@ -1,0 +1,34 @@
+@inject CellPhoneDB CellPhoneDB
+@using Microsoft.EntityFrameworkCore
+@using System.Data
+
+@{
+    var connect = CellPhoneDB.Database.GetDbConnection();
+    var check_connect = CellPhoneDB.Database.CanConnect();
+    var dbname = connect.Database;
+    var dbMigrations = CellPhoneDB.Database.GetPendingMigrations();
+}
+
+
+
+<h1>Thông tin về cơ sở dữ liệu</h1>
+<h2>Tên cơ sở dữ liệu : @dbname</h2>
+<h2>trạng thái kết nối cơ sở dữ liệu : @check_connect</h2>
+<h2>Địa chỉ : @connect.DataSource</h2>
+<h2>Trạng thái : @connect.State</h2>
+<hr>
+@foreach(var migration in dbMigrations){
+    <p>@migration (pedding)</p>
+}
+
+@if(@check_connect){
+    <h2>Tables</h2>
+    await CellPhoneDB.Database.OpenConnectionAsync();
+    var tables = CellPhoneDB.Database.GetDbConnection().GetSchema("tables");
+    foreach (System.Data.DataRow table in tables.Rows){
+        <p>@table["TABLE_NAME"]</p>
+    }
+}
+
+<a asp-area="Database" asp-controller="DbManage" asp-action="SeedData">Khởi tạo dữ liệu admin cho dự án</a>
+

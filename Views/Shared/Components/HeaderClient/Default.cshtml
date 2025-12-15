@@ -1,0 +1,121 @@
+@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Authorization
+@inject SignInManager<AppUserModel> signInManager
+@inject UserManager<AppUserModel> userManager
+@inject IAuthorizationService authenticationService
+@{
+    var result = await authenticationService.AuthorizeAsync(this.User, "ViewManage");
+}
+<div id="main" class="text-white">
+    <div class="bg-client">
+        <div class="grid wide d-flex justify-content-between justify-content-center align-items-center h-100">
+            <div class="list-menu d-flex">
+                <div class="logo pr-3">
+                    <a href="/"><img src="~/images/logo_nks.png" alt=""></a>
+                </div>
+
+                <div class="list-menu d-flex">
+                    <!-- Menu Danh mục -->
+                    <div class="menu-item menu-parents px-1 rounded mx-1 box-shadow d-flex justify-content-center position-relative">
+                        <a href="#" class="text-white py-1 px-2">
+                            <i class="fa-solid fa-list"></i> Danh mục
+                        </a>
+                        <!-- Dropdown menu con -->
+                        @* <div class="dropdown-menu position-absolute bg-white text-dark p-2" style="display:none; z-index: 999;"> *@
+                        @*     <a href="/Products/Phone" class="dropdown-item">Điện thoại</a> *@
+                        @*     <a href="/Products/Laptop" class="dropdown-item">Laptop</a> *@
+                        @*     <a href="/Products/Accessory" class="dropdown-item">Phụ kiện</a> *@
+                        @* </div> *@
+                    </div>
+
+                    <div class="menu-item px-1 box-shadow rounded mx-1 d-flex justify-content-center">
+                        <a asp-action="SendContact" asp-controller="contact" asp-area="contact" class="text-white py-1 px-2">
+                            <i class="fa-regular fa-id-badge"></i> Liên hệ
+                        </a>
+                    </div>
+
+                    <div class="menu-item px-1 rounded box-shadow mx-1 d-flex justify-content-center">
+                        <a asp-action="index" asp-area="Blog" asp-controller="ViewPost" class="text-white py-1 px-2">
+                            <i class="fa-brands fa-blogger"></i> Bài viết
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Search box -->
+            <div class="list-menu">
+                <div class="form-field position-relative">
+                    <input id="search" name="search" type="search" placeholder=" " class="form-input search bg-transparent form-error">
+                    <label class="form-label text-white bg-transparent" style="margin-left: -25px">
+                        <i class="fa-solid fa-magnifying-glass mx-2"></i>Tìm kiếm
+                    </label>
+                    <button class="close-search position-absolute bg-transparent border-0 d-none" style="top:5px; right:2px; font-size:20px;">
+                        <i class="fa-solid fa-xmark text-white"></i>
+                    </button>
+                    <div class="data-search position-absolute">
+                        <div class="d-flex flex-column render-search"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cart & User -->
+            <div class="list-menu d-flex">
+                <div class="menu-item cart-header px-2 py-1 box-shadow rounded mx-1">
+                    <div class="cart-quantity"></div>
+                    <a asp-action="Cart" asp-controller="ProductsClient" class="text-white">
+                        <i class="fa-solid fa-cart-arrow-down"></i> Giỏ hàng
+                    </a>
+                </div>
+
+                <div class="menu-item menu-user px-2 py-1 box-shadow rounded mx-1">
+                    @if (signInManager.IsSignedIn(User))
+                    {
+                        <div class="user">@userManager.GetUserName(User)</div>
+                        <form asp-area="Identity" asp-controller="Account" asp-action="Logout" method="POST" class="user-info">
+                            <div class="user-info-item">
+                                <a asp-area="Identity" asp-controller="Manage" asp-action="profileUser">
+                                    <i class="fa-solid fa-user mx-2"></i> Thông tin
+                                </a>
+                            </div>
+                            <div class="user-info-item">
+                                <a asp-area="Identity" asp-controller="Manage" asp-action="ChangePassword">
+                                    <i class="fa-solid fa-lock mx-2"></i> Đổi mật khẩu
+                                </a>
+                            </div>
+                            <div class="user-info-item">
+                                <button type="submit"><i class="fa-solid fa-right-from-bracket mx-2"></i> Đăng xuất</button>
+                            </div>
+                            @if (result.Succeeded)
+                            {
+                                <div class="user-info-item">
+                                    <a href="/admin/DashBoard/index" class="text-white">
+                                        <i class="fa-solid fa-gear mx-2"></i> Quản trị
+                                    </a>
+                                </div>
+                            }
+                        </form>
+                    }
+                    else
+                    {
+                        <a asp-area="Identity" asp-controller="Account" asp-action="Login" class="text-white">
+                            <i class="fa-solid fa-circle-user"></i>
+                        </a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="module" src="~/js/Products/Search.js"></script>
+
+<!-- JS hiển thị dropdown Danh mục khi hover -->
+<script>
+    $(document).ready(function(){
+        $('.menu-item.menu-parents').hover(function(){
+            $(this).find('.dropdown-menu').stop(true,true).slideDown(200);
+        }, function(){
+            $(this).find('.dropdown-menu').stop(true,true).slideUp(200);
+        });
+    });
+</script>

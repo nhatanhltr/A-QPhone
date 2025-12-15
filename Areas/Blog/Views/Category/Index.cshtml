@@ -1,0 +1,49 @@
+@Html.AntiForgeryToken()
+<div class="container-fluid">
+    <div class="row">
+        <div class="card rounded mb-0 w-100">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb text-dark bg-white mb-0">
+                    <li class="px-2 text-dark"><a href="#">Trang chủ <i class="fa-solid fa-chevron-right"></i></a></li>
+                    <li class="px-2 text-dark active" aria-current="page">Danh mục</li>
+                </ol>
+            </nav>
+
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 p-0">
+            <div class="card rounded">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h4 class="card-title animation-text">Chuyên mục</h4>
+                        <div class="mb-2">
+                            <button class="box-shadow button create-category"><i class="fa-solid fa-plus mr-2"></i>Thêm </button>
+                            <a class="box-shadow button bg-white text-dark ml-2" asp-area="Blog" asp-controller="Post" asp-action="Index"><i class="fa-solid fa-circle-right mr-2"></i>Quản lý bài viết</a>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered zero-configuration">
+                            <thead>
+                                <tr class="text-center">
+                                    <th>Tiêu đề</th>
+                                    <th>Url hiện thị</th>
+                                    <th>Chức năng</th>
+                                </tr>
+                            </thead>
+                            <tbody class="list">
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="toast"></div>
+<body>
+    <script type="module" src="~/js/blog/categories.js"></script>
+</body>

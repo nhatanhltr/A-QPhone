@@ -1,0 +1,73 @@
+@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<AppUserModel> signInManager;
+@inject UserManager<AppUserModel> userManager;
+
+@{
+    var userid = await userManager.GetUserAsync(User);
+    var user = await userManager.FindByIdAsync(userid.Id);
+    var picture = user.Pricture;
+    var fullName = user.FullName;
+}
+<div class="header" style="height: 70px">
+    <div class="header-content clearfix">
+        <div class="nav-control">
+            <div class="hamburger">
+                <span class="toggle-icon"><i class="icon-menu"></i></span>
+            </div>
+        </div>
+
+        <div class="header-left">
+            <div class=" icons">
+                <div class="form-field position-relative">
+                    <input id="search" name="search" type="search" placeholder=" "
+                        class=" form-input search text-white bg-transparent form-error">
+                    <label class=" form-label text-white bg-transparent" style="margin-left: -25px"><i
+                            class="fa-solid fa-magnifying-glass mx-2"></i>Tìm kiếm </label>
+                    <div class="data-search position-absolute " style="z-index: 999; top:65px;">
+                        <div class="d-flex flex-column render-search">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header-right pt-2">
+            <ul class="clearfix">
+              
+
+                @if (signInManager.IsSignedIn(User))
+                {
+                    <li class="icons dropdown d-none d-md-flex">
+                        <div class="text-white px-1"> @fullName</div>
+                    </li>
+                    <li class="icons dropdown">
+                        <div class="user-img c-pointer position-relative" data-toggle="dropdown">
+                            <span class="activity active"></span>
+                            <img src="@picture" height="40" width="40" alt="">
+                        </div>
+                        <div class="drop-down dropdown-profile animated fadeIn dropdown-menu overflow-hidden">
+                            <div class="dropdown-content-body">
+                                <ul>
+                                    <li>
+                                        <a href="app-profile.html"><i class="icon-user"></i>
+                                            <span>Profile</span></a>
+                                    </li>
+                                    <hr class="my-2">
+
+                                    <li>
+                                        <form asp-area="Identity" asp-controller="Account" asp-action="LogoutAdmin"
+                                            asp-route-returnurl="/admin/login" method="POST">
+                                            <button type="submit"
+                                                class="btn-logout bg-white border-0 cursor py-2 text-dark text-left"><i
+                                                    class="icon-key "></i> <span class="pl-2"> Logout</span></button>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>
+<script type="module" src="~/js/Menu/SearchAdmin.js"></script>

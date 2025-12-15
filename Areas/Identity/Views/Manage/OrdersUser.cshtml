@@ -1,0 +1,135 @@
+@model dynamic
+@{
+    Layout = "_LayoutClient";
+}
+<div class="grid wide">
+    <div class="row">
+        <div class="col col-3 ">
+            <div class="h-100 bg-light">
+                <ul class="py-5 px-2">
+                    <li class="border p-2 rounded my-1">
+                        <a asp-area="Identity" asp-controller="Manage" asp-action="ProfileUser">
+                            <div class=""><i class="fa-regular fa-address-card px-2"></i> Thông tin cá
+                                nhân</div>
+                        </a>
+                    </li>
+
+                    <li class="border p-2 rounded my-1">
+                        <a asp-area="Identity" asp-controller="Manage" asp-action="OrdersUser">
+                            <div class="item-category actives"><i class="fa-solid fa-truck-moving px-2"></i>Trạng
+                                thái đơn hàng</div>
+                        </a>
+                    </li>
+
+                       <li class="border p-2 rounded my-1">
+                        <a asp-area="Identity" asp-controller="Manage" asp-action="HistoryOrder">
+                            <div class="item-category"><i class="fa-solid fa-clock-rotate-left px-2"></i> Lịch sử mua
+                        hàng</div>
+                        </a>
+                    </li>
+                   <li class="border p-2 rounded my-1">
+                        <a asp-area="Identity" asp-controller="Manage" asp-action="ChangePassword">
+                            <div class=""><i class="fa-solid fa-key px-2"></i>Thay đổi mật khẩu</div>
+                        </a>
+                    </li>
+                    <li class="border p-2 rounded my-1"><i class="fa-solid fa-right-from-bracket px-2"></i> Thoát tài
+                        khoản</li>
+                </ul>
+            </div>
+        </div>
+        <div class="col col-9 ">
+            <div class="">
+                <div class="text-center py-3">
+                    <h3>Trạng thái đơn hàng</h3>
+                </div>
+                @foreach (var order in Model)
+                {
+                    <div class="mb-4 p-2 rounded" style="box-shadow: rgba(0, 0, 0, 0.35) 0px 0px 5px;">
+                        <div class="row">
+                            <div class="col col-12">
+                                <table class="table table-hover text-center">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Tên sản phẩm</th>
+                                            <th scope="col">Hình ảnh</th>
+                                            <th scope="col">Giá</th>
+                                            <th scope="col">Số lượng</th>
+                                        </tr>
+                                    </thead>
+                                    @foreach (var ordetail in order.Details)
+                                    {
+                                        <tbody>
+                                            <tr>
+                                                <td class="w-50"><a asp-controller="ProductsClient" asp-action="Details" asp-route-slug="@ordetail.products.Slugp">@ordetail.products.Title</a></td>
+                                                <td><img height="70" src="@ordetail.products.Image" /></td>
+                                                <td><span
+                                                        class="text-danger font-weight-bold">@Functions.VNĐ(ordetail.products.Price)đ</span>
+                                                </td>
+                                                <td>@ordetail.Quantity</td>
+                                            </tr>
+                                        </tbody>
+                                    }
+                                </table>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row ">
+                            
+                            <div class="col col-12 mt-2">
+                                <div class="row">
+                                    <div class="col col-12">
+                                        <div class="border p-2 mb-1 rounded w-100">
+                                            <div class="text-center p-1 font-weight-bold border-bottom mb-2"><i class="fa-solid fa-location-dot mx-2"></i>Địa chỉ nhận hàng</div>
+                                            <div class="col col-6">
+                                                <h6><span class="font-weight-bold">Họ tên: </span> @order.FullName</h6>
+                                            </div>
+                                            <div class="col col-6">
+                                                <h6><span class="font-weight-bold">Điện thoại:</span> @order.Phone</h6>
+                                            </div>
+                                            <div class="col col-12">
+                                                <h6><span class="font-weight-bold">Địa chỉ:</span> @order.Address</h6>
+                                            </div>
+                                            <div class="col col-12">
+                                                <h6><span class="font-weight-bold">Ngày đặt hàng:</span> @order.createDate</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col col-12">
+                                        <div class="border p-2 mb-1 rounded w-100">
+                                        <div class="text-center p-1 font-weight-bold border-bottom mb-2"><i class="fa-solid fa-truck-moving mx-2"></i>Thông tin đơn hàng</div>
+                                        <div class="col col-6">
+                                            <h6><span class="font-weight-bold">Thanh toán:</span> <span
+                                                    class="text-danger font-weight-bold">@Functions.VNĐ(order.TotalPrice)đ</span>
+                                            </h6>
+                                        </div>
+                                        <div class="col col-6">
+                                            <h6><span class="font-weight-bold">Số lượng: </span>@order.TotalQuantity sản
+                                                phẩm
+                                            </h6>
+                                        </div>
+
+                                        <div class="col col-12">
+                                            <h6><span class="font-weight-bold">Trạng thái đơn hàng: </span>@order.StatusName
+                                            </h6>
+                                        </div>
+                                        <div class="col col-12 d-flex justify-content-end">
+                                            <button class="button  @(order.StatusID <= 2 ? "bg-danger": "bg-success")" > @(order.StatusID <= 2 ? "Hủy đơn hàng": "Đã nhận hàng") </button>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                                <div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="toast"></div>

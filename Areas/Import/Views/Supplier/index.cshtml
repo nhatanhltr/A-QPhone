@@ -1,0 +1,84 @@
+@Html.AntiForgeryToken()
+@* <link rel="stylesheet" href="~/css/grid.css"> *@
+<div class="container-fluid">
+    <div class="row">
+        <div class="card rounded mb-0 w-100">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb text-dark bg-white mb-0">
+                    <li class="px-2 text-dark"><a href="#">Trang chủ <i class="fa-solid fa-chevron-right"></i></a></li>
+                    <li class="px-2 text-dark active" aria-current="page">Nhà cung cấp</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 p-0">
+            <div class="card rounded">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-3 w-100">
+                        <div class="d-flex align-items-center w-50">
+                            <div class="form-field w-50 ">
+                                <input type="search" name="search" class="form-control form-input w-100"
+                                    placeholder=" " />
+                                <span class="form-label">Tìm kiếm</span>
+                            </div>
+                            <button class=" box-shadow active px-2 py-1 rounded "><i class="fa-solid fa-magnifying-glass"></i></button>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <a class="create box-shadow button text-white"><i class="fa-solid fa-plus mr-2"></i>Thêm</a>
+                            <div>
+                                <a class="ml-3 box-shadow button text-dark bg-white" asp-action="index" asp-controller="CategoryProduct" asp-area="products"><i class="fa-solid fa-circle-arrow-right mr-2"></i>Đơn nhập hàng</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center w-100 mb-4">
+                        <div class="d-flex align-items-center ">
+                            
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table text-center table-striped table-bordered zero-configuration">
+                            <thead>
+                                <tr>
+                                    <th>STT</th>
+                                    <th>Tên nhà cung cấp</th>
+                                    <th>Logo</th>
+                                    <th>Số điện thoại</th>
+                                    <th>Chức năng</th>
+                                </tr>
+                            </thead>
+                            <tbody class="list">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                 <div class=" d-flex justify-content-center">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                            @* <li class="">
+                                <button class="page-link Previous" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </button>
+                            </li> *@
+                            <div class="pageNumber d-flex justify-content-center">
+                            </div>
+                            @* <li class="">
+                                <button class="page-link Next" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </button>
+                            </li> *@
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="toast"></div>
+
+<body>
+    <script type="module" src="~/js/import/Supplier.js"></script>
+</body>

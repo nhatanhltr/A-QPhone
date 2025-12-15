@@ -1,0 +1,89 @@
+.Container {
+    position: relative;
+    height: 100%;
+}
+
+.swiper {
+    width: 100%;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.swiper-wrapper {
+    padding: 10px;
+}
+
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    height: calc((100% - 30px) / 2) !important;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.7);
+    border-radius: 15px;
+    padding: 15px;
+    /* Center slide text vertically */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .products{
+        color:#201b1b
+    }
+    .products:hover{
+        color: #000;
+    }
+    .products-content-title {
+        margin-bottom: 10px;
+        font-weight: 500;
+        font-size: 18px;
+        max-height: 80px;
+        min-height: 80px;
+    }
+    .products-content-price{
+        font-weight: 700;
+        .price-new{
+            color: red;
+            font-size: 16px;
+        }
+        .price-old{
+            font-size: 12px;
+            text-decoration: line-through;
+            opacity: 0.8;
+        }
+    }
+    .products-infoFree{
+        background-color: rgba($color: #000000, $alpha: 0.2);
+        border-radius: 10px;
+        font-size: 14px;
+        color: #000;
+        p{
+            padding: 10px;
+        }
+    }
+    .products-likes{
+        float: right;
+        height: 30px;
+        font-size: 20px;
+        font-weight: 700;
+        .ti-heart:hover{
+            color: red;
+            animation: fat 0.3s linear infinite alternate;
+        }
+        .like{
+            color: red
+        }
+    }
+    
+}
+.products-content {
+    margin-bottom: 20px;
+}
+
+@keyframes fat {
+    0%{
+        font-size: 20px;
+    }
+    100%{
+        font-size: 30px;
+    }
+}

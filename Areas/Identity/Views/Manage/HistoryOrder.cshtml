@@ -1,0 +1,50 @@
+
+@{
+    Layout = "_LayoutClient";
+}
+<div class="grid wide">
+    <div class="row">
+        <div class="col col-3 ">
+            <div class="h-100 bg-light">
+                <ul class="py-5 px-2">
+                    <li class="border p-2 rounded my-1">
+                        <a asp-area="Identity" asp-controller="Manage" asp-action="ProfileUser">
+                            <div class=""><i class="fa-regular fa-address-card px-2"></i> Thông tin cá
+                                nhân</div>
+                        </a>
+                    </li>
+
+                    <li class="border p-2 rounded my-1">
+                        <a asp-area="Identity" asp-controller="Manage" asp-action="OrdersUser">
+                            <div class="item-category "><i class="fa-solid fa-truck-moving px-2"></i> Trạng
+                                thái đơn hàng</div>
+                        </a>
+                    </li>
+
+                    <li class="border p-2 rounded my-1">
+                        <a asp-area="Identity" asp-controller="Manage" asp-action="">
+                            <div class="item-category actives"><i class="fa-solid fa-clock-rotate-left px-2"></i> Lịch sử mua
+                        hàng</div>
+                        </a>
+                    </li>
+                   <li class="border p-2 rounded my-1">
+                        <a asp-area="Identity" asp-controller="Manage" asp-action="ChangePassword">
+                            <div class=""><i class="fa-solid fa-key px-2"></i>Thay đổi mật khẩu</div>
+                        </a>
+                    </li>
+                    <li class="border p-2 rounded my-1"><i class="fa-solid fa-right-from-bracket px-2"></i> Thoát tài
+                        khoản</li>
+                </ul>
+            </div>
+        </div>
+        <div class="col col-9 ">
+            <div class="">
+                <div class="text-center py-3">
+                    <h3>Lịch sử mua hàng</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="toast"></div>

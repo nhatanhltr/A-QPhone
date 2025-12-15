@@ -1,0 +1,224 @@
+@Html.AntiForgeryToken()
+@model List<SalesNameVModel>
+@* <link rel="stylesheet" href="~/css/grid.css"> *@
+
+<head>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <style>
+        html,
+        body {
+            position: relative;
+            height: 100%;
+        }
+        .swiper {
+            width: 100%;
+            height: 100%;
+        }
+        .swiper-slide {
+            text-align: center;
+            @* font-size: 18px; *@
+            background: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 0.5rem rgba(0,0,0,.3);
+        }
+
+        .swiper-slide img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+.switch {
+  --circle-dim: 1.4em;
+  font-size: 17px;
+  position: relative;
+  display: inline-block;
+  width: 3.5em;
+  height: 2em;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #f5aeae;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius: 30px;
+}
+
+.slider-card {
+  position: absolute;
+  content: "";
+  height: var(--circle-dim);
+  width: var(--circle-dim);
+  border-radius: 20px;
+  left: 0.3em;
+  bottom: 0.3em;
+  -webkit-transition: .4s;
+  transition: .4s;
+  pointer-events: none;
+}
+
+.slider-card-face {
+  position: absolute;
+  inset: 0;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  -webkit-perspective: 1000px;
+          perspective: 1000px;
+  border-radius: 50%;
+  -webkit-transition: .4s transform;
+  transition: .4s transform;
+}
+
+.slider-card-front {
+  background-color: #DC3535;
+}
+
+.slider-card-back {
+  background-color: #379237;
+  -webkit-transform: rotateY(180deg);
+          transform: rotateY(180deg);
+}
+
+input:checked ~ .slider-card .slider-card-back {
+  -webkit-transform: rotateY(0);
+          transform: rotateY(0);
+}
+
+input:checked ~ .slider-card .slider-card-front {
+  -webkit-transform: rotateY(-180deg);
+          transform: rotateY(-180deg);
+}
+
+input:checked ~ .slider-card {
+  -webkit-transform: translateX(1.5em);
+      -ms-transform: translateX(1.5em);
+          transform: translateX(1.5em);
+}
+
+input:checked ~ .slider {
+  background-color: #9ed99c;
+}
+    </style>
+</head>
+<div class="container-fluid">
+    <div class="row">
+        <div class="card rounded mb-0 w-100">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb text-dark bg-white mb-0">
+                    <li class="px-2 text-dark"><a href="#">Trang chủ <i class="fa-solid fa-chevron-right"></i></a></li>
+                    <li class="px-2 text-dark active" aria-current="page">Quản lý </li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 p-0">
+            <div class="card rounded">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-3 w-100">
+
+                        <div class="d-flex align-items-center">
+                            <button
+                                class="create-info box-shadow button text-white"><i class="fa-solid fa-plus mx-2"></i>
+                                Thêm thông tin</button>
+                            <div>
+                                <a asp-action="index" asp-controller="CategoryProduct" asp-area="products"><i
+                                        class="fa-solid fa-circle-arrow-right mx-2"></i> Quản lý chuyên mục</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center w-100 mb-4">
+                        <div class="d-flex align-items-center ">
+                            <h4 class="card-title totalUser m-0"></h4>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <div>
+                            @foreach(var i in Model){
+                               <div >
+                               <div class="d-flex justify-content-between">
+                                    <div class="d-flex ">
+                                        <h3 class=" mr-2"  >@i.Name <span>@i.icon</span></h3>
+                                        <label class="switch">
+                                            <input data-id="@i.Id"  @(i.status ==1 ? "checked" : "" ) class="listen" type="checkbox">
+                                            <div class="slider"></div>
+                                            <div class="slider-card">
+                                                <div class="slider-card-face slider-card-front"></div>
+                                                <div class="slider-card-face slider-card-back"></div>
+                                            </div>
+                                        </label>
+                                    </div>
+                                    <div><Button class="btn-add-sale box-shadow button " data-id="@i.Id" >Thêm</Button></div>
+                               </div>
+                                 <div class="grid wide">
+                                    <div class="swiper mySwiper grid wide py-3">
+                                        <div data-id="@i.Id"  class="swiper-wrapper sale-title col col-12 ">
+                                             
+                                        </div>
+                                        <div class="swiper-button-next"></div>
+                                        <div class="swiper-button-prev"></div>
+                                        <div class="swiper-pagination"></div>
+                                    </div>
+                                </div>
+                                
+                            </div> 
+                            <hr>
+                            }
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div id="toast"></div>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+        var swiper = new Swiper(".mySwiper", {
+            slidesPerView: 7,
+            spaceBetween: 15,
+        @* centeredSlides: true, *@
+            loop: true,
+            pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+
+            navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev"
+        },
+        autoplay: {
+            delay: 3000,
+        disableOnInteraction: true
+        }
+        });
+        @* var s = document.querySelector('.swiper-wrapper');
+            s.addEventListener('mouseenter', function () {
+            swiper.autoplay.stop();
+            });
+            s.addEventListener('mouseleave', function () {
+            swiper.autoplay.start()
+            });  *@
+    </script>
+    <script type="module" src="~/js/Sales/SettingSale.js"></script>

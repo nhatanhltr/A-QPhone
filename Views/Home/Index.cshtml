@@ -1,0 +1,54 @@
+<div class="grid wide bg-white">
+    <div class="row handMouse" style="position: relative;">
+            @await Component.InvokeAsync("CategoryMenu")
+        
+        <div class="col col-9">
+            @await Component.InvokeAsync("SliderBar")
+        </div>
+        
+    </div>
+</div>
+@await Component.InvokeAsync("SwiperProducts")
+
+@* @await Component.InvokeAsync("SwiperProducts") *@
+
+<div class="contact-btn">
+    <div class="fixed-contact">
+        <div title="Le Tran Nhat Anh " class="contact  zalo">
+            <a href="https://zalo.me/0973177047" target="_blank">
+                <img class="img-logo-zalo" src="/Images/logozalo.png" alt="">
+            </a>
+        </div>
+        <div title="0973177047" class="contact  phone">
+            <a class="" href="tel://0973177047">
+                <img class="img-logo-zalo" src="/Images/logo-phone.png" alt="">
+            </a>
+        </div>
+        <div title="letrannhatanhhh@gmail.com" class="contact  email">
+            <a href="mailto:letrannhatanhhh@gmail.com" target="_blank">
+                <img class="img-logo-zalo" src="/Images/logo-email.png" alt="">
+            </a>
+        </div>
+    </div>
+    <button onclick="showContact()" ondblclick="upTop()" class="contact up-header ">
+        <i class="fa-solid fa-angles-up"></i>
+    </button>
+</div>
+
+<script>
+
+    function showContact() {
+        let getFixedContact = $('.fixed-contact');
+        getFixedContact.toggleClass('h-none-0');
+    }
+
+    var upTop = function () {
+        var s = $('html, body')
+        s.animate({
+            scrollTop: 0
+        }, 800); // 800 là thời gian (milliseconds) của animation
+
+        s.scrollTop(0);
+    }
+
+</script>

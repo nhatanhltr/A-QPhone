@@ -1,0 +1,58 @@
+:root {
+    --bg-client: #D55A2A;
+    --header-height: 60px;
+}
+
+.bg-client {
+    background-color: var(--bg-client);
+    height: var(--header-height);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 5;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 10px;
+
+}
+
+.menu-parents {
+    position: relative;
+}
+
+    .menu-parents::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: calc(0% - 19px);
+        border: 10px solid transparent;
+        border-top-color: #efefef;
+    }
+
+.menu-parents::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: calc(0% - 15px);
+    height: 15px;
+    width: 100px;
+    background-color: transparent;
+}
+
+.menu-child {
+    display: none;
+    position: absolute;
+    top: 45px;
+    
+}
+
+.menu-parents:hover .menu-child {
+    display: block;
+    width: 700px;
+    height: 300px;
+    box-shadow: inset;
+}
+.content{
+    padding-top: var(--header-height);
+}

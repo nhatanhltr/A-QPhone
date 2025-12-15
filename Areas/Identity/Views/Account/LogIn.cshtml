@@ -1,0 +1,41 @@
+@model LogInModel;
+@{
+    Layout= "_layoutClient";
+}
+<head>
+    <link rel="stylesheet" href="~/css/style.css">
+    <link rel="stylesheet" href="~/css/site.min.css">
+</head>
+<div class="h-100 w-100 d-flex justify-content-center align-items-center">
+    <form asp-controller="Account" asp-action="Login" asp-route-returnurl="/" method="POST"
+        class="form-account w-100 h-100">
+        <div class="p-4 d-flex justify-content-center"><img src="~/images/logo-nks-1ac7b6.png" alt=""></div>
+        <div class="text-danger">@Html.ValidationSummary()</div>
+        <div class="form-field w-50">
+            <input asp-for="Email" class="form-control form-input border-button-input" placeholder=" " />
+            <span class="form-label">@Html.DisplayNameFor(model => model.Email)</span>
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <div class="form-field w-50">
+            <input asp-for="Password" class="form-control form-input border-button-input" placeholder=" " />
+            <span class="form-label">@Html.DisplayNameFor(model => model.Password)</span>
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <div class="custom-control custom-checkbox small">
+                <input asp-for="RememberMe" class="custom-control-input border-button-input">
+                <label class="custom-control-label" asp-for="RememberMe">
+                    @Html.DisplayNameFor(m => m.RememberMe)
+                </label>
+            </div>
+        </div>
+        <button type="submit" class="btn-submit">Đăng nhập</button>
+        <div>
+            <p class="p-3">Bạn chưa có tài khoản hãy <a class="text-info" asp-area="identity" asp-controller="Account"  asp-action="Register">Đăng ký</a></p>
+        </div>
+    </form>
+</div>
+
+<body>
+    <script src="/_framework/aspnetcore-browser-refresh.js"></script>
+</body>

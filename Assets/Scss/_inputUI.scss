@@ -1,0 +1,83 @@
+.form-field {
+  position: relative;
+  margin: 10px 20px;
+}
+
+.form-label {
+  position: absolute;
+  top: 20px;
+  transform: translateY(-50%);
+  left: 21px;
+  user-select: none;
+  color: #858484;
+  pointer-events: none;
+  transition: 0.25s ease-out;
+  font-size: 15px;
+}
+
+
+.form-input:not(:placeholder-shown)+.form-label,
+.form-input:focus+.form-label {
+  top: 0;
+  padding: 0 5px;
+  margin-left: -5px;
+  /* margin-left: 20px; */
+  display: inline-block;
+  background-color: white;
+  color: #1ac7b6;
+  font-size: 12px;
+}
+
+.input {
+  border: none;
+  background-color: transparent;
+  padding: 8px;
+  border-radius: 4px;
+  width: 50%;
+
+  &.input-edit {
+    background-color: #fff;
+    border: 2px solid #aaa9a9;
+  }
+}
+
+// check box
+
+.custom-checkbox {
+  display: flex;
+  align-items: center;
+}
+
+.custom-checkbox input {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #3498db;
+  /* Màu viền của checkbox */
+  border-radius: 4px;
+  /* Độ cong của viền checkbox */
+  outline: none;
+  cursor: pointer;
+  margin-right: 8px;
+}
+
+.custom-checkbox input:checked {
+  background-color: #3498db;
+  /* Màu nền khi checkbox được chọn */
+}
+
+.custom-checkbox label {
+  cursor: pointer;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}

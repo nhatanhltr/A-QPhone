@@ -1,0 +1,239 @@
+@model ProductModel
+<link rel="stylesheet" href="~/lib/froala-editor/css/froala_editor.pkgd.min.css">
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="card rounded mb-0 w-100">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb text-dark bg-white mb-0">
+                    <li class="px-2 text-dark"><a href="#">Trang chủ <i class="fa-solid fa-chevron-right"></i></a></li>
+                    <li class="px-2 text-dark"><a href="/admin/products/index">Quản lý sản phẩm <i
+                                class="fa-solid fa-chevron-right"></i></a></li>
+                    <li class="px-2 text-dark active" aria-current="page">Chi tiết sản phẩm</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 p-0">
+            <div class="card rounded">
+                <div class="card-body">
+                    <h3 class="text-center animation-text">Thông tin sản phẩm</h3>
+                    <form id="Create" action="post">
+                        <div class="row">
+                            <div class="col l-3 box-shadow">
+                                <div class="row ">
+                                    <div class="col col-12">
+                                        <div class=" w-100 d-flex justify-content-center  p-2 h-100">
+                                            <div class="d-flex text-center align-items-center"
+                                                style="flex-direction: column;">
+                                                <img id="previewImage" height=100% width=100%
+                                                    src="@(Model.Image != null? Model.Image : "/images/loader.gif")"
+                                                    class=" px-2" />
+                                                <input id="fileInput" name="file" type="file" class="d-none" />
+                                                <label for="fileInput"
+                                                    class="box-shadow label-s d-inline px-2 my-3">Chọn
+                                                    Tệp</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col col-12 border">
+                                        <div class="py-2">Lưu ý: (<span class="text-danger">*</span>) không được để
+                                            trống</div>
+                                        <div class="py-2 font-weight-bold text-danger">Tồn kho: @Model.Inventory sản
+                                            phẩm</div>
+                                        <div class="py-2 font-weight-bold text-danger">Danh mục:
+                                            @Model.ProductCategoryProducts[0].Category.Title</div>
+                                        <div class="py-2">Người tạo: @Model.AuthorId</div>
+                                        <div class="py-2">Ngày tạo: @Model.DateCreated</div>
+                                        <div class="py-2">Cập nhật: @Model.DateUpdated</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col l-9">
+                                <div class="box-shadow p-2">
+                                    <div class="row">
+                                        <div class="col col-12 my-3">
+                                            <h6 class=" ml-2 font-weight-bold">Danh mục sản phẩm (<span
+                                                    class="text-danger">*</span>)</h6>
+                                            <select id="multiple" class="select w-100" multiple="multiple">
+                                            </select>
+                                        </div>
+
+                                        <div class="col col-12">
+                                            <div class="form-group form-field ">
+                                                <input value="@Model.Title" id="name" name="Title" rule="required"
+                                                    type="text" placeholder=" "
+                                                    class=" form-input form-error form-control ">
+                                                <label for="name" class="form-label">Tên sản phẩm (<span
+                                                        class="text-danger">*</span>) </label>
+                                                <span class="form-message"></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="col col-12">
+                                            <div class="row">
+                                                <div class="col col-6">
+                                                    <div class="form-group form-field ">
+                                                        <input value="@Model.Price" type="number" id="name" name="Price"
+                                                            rule="required" type="text" placeholder=" "
+                                                            class=" form-input form-error form-control ">
+                                                        <label for="name" class="form-label">Giá mới (<span
+                                                                class="text-danger">*</span>)</label>
+                                                        <span class="form-message"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col col-6">
+                                                    <div class="form-group form-field ">
+                                                        <input value="@Model.PriceOld" type="number" id="name"
+                                                            name="PriceOld" rule="required" type="text" placeholder=" "
+                                                            class=" form-input form-error form-control ">
+                                                        <label for="name" class="form-label">Giá cũ (<span
+                                                                class="text-danger">*</span>)</label>
+                                                        <span class="form-message"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col col-12">
+                                            <div class="row">
+                                                <div class="col col-6">
+                                                    <div class="form-group form-field ">
+                                                        <input id="name" name="Ram" rule="required" type="text"
+                                                            placeholder=" "
+                                                            class=" form-input form-error form-control ">
+                                                        <label for="name" class="form-label">Bộ nhớ RAM (<span
+                                                                class="text-danger">*</span>)</label>
+                                                        <span class="form-message"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col col-6">
+                                                    <div class="form-group form-field ">
+                                                        <input id="name" name="Rom" rule="required" type="text"
+                                                            placeholder=" "
+                                                            class=" form-input form-error form-control ">
+                                                        <label for="name" class="form-label">Bộ nhớ ROM (<span
+                                                                class="text-danger">*</span>)</label>
+                                                        <span class="form-message"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col col-12">
+                                            <div class="row">
+                                                <div class="col col-6">
+                                                    <div class="form-group form-field ">
+                                                        <input id="name" name="Screen" rule="required" type="text"
+                                                            placeholder=" "
+                                                            class=" form-input form-error form-control ">
+                                                        <label for="name" class="form-label">Màn hình (<span
+                                                                class="text-danger">*</span>)</label>
+                                                        <span class="form-message"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col col-6">
+                                                    <div class="form-group form-field ">
+                                                        <input id="name" name="Camera" rule="required" type="text"
+                                                            placeholder=" "
+                                                            class=" form-input form-error form-control ">
+                                                        <label for="name" class="form-label">Camera (<span
+                                                                class="text-danger">*</span>)</label>
+                                                        <span class="form-message"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col col-12">
+                                            <div class="row">
+                                                <div class="col col-4">
+                                                    <div class="form-group form-field ">
+                                                        <input id="name" name="Security" rule="required" type="text"
+                                                            placeholder=" "
+                                                            class=" form-input form-error form-control ">
+                                                        <label for="name" class="form-label">Bảo mật (<span
+                                                                class="text-danger">*</span>)</label>
+                                                        <span class="form-message"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col col-4">
+                                                    <div class="form-group form-field ">
+                                                        <input id="name" name="Bettery" rule="required" type="text"
+                                                            placeholder=" "
+                                                            class=" form-input form-error form-control ">
+                                                        <label for="name" class="form-label">Dung lượng pin (<span
+                                                                class="text-danger">*</span>)</label>
+                                                        <span class="form-message"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col col-4">
+                                                    <div class="form-group form-field ">
+                                                        <input id="name" name="Warranty" rule="required" type="text"
+                                                            placeholder=" "
+                                                            class=" form-input form-error form-control ">
+                                                        <label for="name" class="form-label">Bảo hành (<span
+                                                                class="text-danger">*</span>)</label>
+                                                        <span class="form-message"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col col-12">
+                                            <div class="form-group form-field w-100  d-flex">
+                                                <div class="custom-checkbox ">
+                                                    <input id="check" name="check" type="checkbox">
+                                                    <label for="check" class="form-label"
+                                                        style="transform: translate(10px, -20px);">Hiển thị</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col col-12">
+                                            <div class="row">
+                                                <div class="col col-12">
+                                                    <div class="form-group form-field">
+                                                        <textarea id="Editor"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col col-12">
+                                            <div class="row">
+                                                <div class="col col-2">
+                                                    <a asp-area="Products" asp-action="Delete" asp-controller="Products"
+                                                        asp-route-id="@Model.ProductID" type="submit"
+                                                        class=" text-white form-submit button bg-danger box-shadow px-2 ">Xóa</a>
+                                                </div>
+                                                <div class="col col-2">
+                                                    <a asp-area="Products" asp-action="index" asp-controller="Products"
+                                                        type="submit"
+                                                        class=" form-submit button bg-white box-shadow px-3 text-dark">Quay
+                                                        lại</a>
+                                                </div>
+                                                <div class="col col-8">
+                                                    <button type="submit"
+                                                        class="button-ainmate form-submit button box-shadow px-5 float-right">Thêm
+                                                        mới</button>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex justify-content-around">
+                                                <div class="d-flex">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/lib/froala-editor/js/froala_editor.pkgd.min.js"></script>
+
+
+<script type="module" src="~/js/Products/create.js"></script>

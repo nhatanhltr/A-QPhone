@@ -1,0 +1,38 @@
+@page "/Login.cshtml"
+
+<head>
+    <link rel="stylesheet" href="~/css/validateform.css">
+    <link href="~/css/style.css" rel="stylesheet">
+    <link href="~/icons/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="h-100 d-flex justify-content-center  main">
+        <form action="" method="POST" class="form" id="form">
+            <span><img class="pb-3" src="~/images/logo-nks-1ac7b6.png" alt=""></span>
+            <div class="form-group form-field">
+                <input id="fullname" name="fullname" rule="required" type="text" placeholder=" "
+                    class="form-input form-error">
+                <label class="form-label">Tên tài khoản</label>
+                <span class="form-message"></span>
+            </div>
+            <div class="form-group form-field">
+                <input id="password" name="password" rule="required|min:6" type="password" placeholder=" "
+                    class="form-input form-error">
+                <label class="form-label">Password</label>
+                <span class="form-message"></span>
+            </div>
+
+            <button type="submit" class="form-submit w-50">Đăng nhập</button>
+            <hr>
+            <span>Hoặc đăng nhập bằng</span>
+            <div class="d-flex center justify-content-center">
+            </div>
+        </form>
+    </div>
+    <script src="~/js/validateform.js"></script>
+    <script>
+        Validate("#form")
+    </script>
+</body>

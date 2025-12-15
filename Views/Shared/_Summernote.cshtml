@@ -1,0 +1,187 @@
+@model Summernote
+
+@if (Model.LoadLibrary)
+{
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="~/css/style.css">
+
+
+    <link rel="stylesheet" href="~/lib/jqueryui/themes/base/theme.css" />
+    <link rel="stylesheet" href="~/lib/jqueryui/themes/base/jquery-ui.css" />
+    <link rel="stylesheet" href="~/lib/elfinder/css/elfinder.full.css" />
+    <link rel="stylesheet" href="~/lib/elfinder/css/theme.min.css" />
+    <script src="~/lib/jqueryui/jquery-ui.min.js"></script>
+    <script src="~/lib/elfinder/js/elfinder.min.js"></script>
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+
+    <link rel="stylesheet" href="~/lib/summernote/summernote-bs4.min.css" />
+    <script src="~/lib/summernote/summernote-bs4.min.js"></script>
+
+}
+
+
+<script>
+
+    (function (factory) {
+        if (typeof define === 'function' && define.amd) {
+            define(['jquery'], factory);
+        }
+        else if (typeof module === 'object' && module.exports) {
+            module.exports = factory(require('jquery'));
+        } else {
+            factory(window.jQuery);
+        }
+    }(function ($) {
+        $.extend($.summernote.plugins, {
+            // Tạo plugin tên elfinder
+            'elfinder': function (context) {
+                var self = this;
+                // ui has renders to build ui elements.
+                var ui = $.summernote.ui;
+                // Tạo nút bấm
+                context.memo('button.elfinder', function () {
+                    var button = ui.button({
+                        contents: '<i class="note-icon-picture"/>&nbsp;&nbsp;Images',
+                        tooltip: 'Quản lý ảnh',
+                        click: function () {
+                            // Bấm vào nút bấm gọi hàm elfinderDialog
+                            elfinderDialog(context);
+                        }
+                    });
+                    // create jQuery object from button instance.
+                    var $elfinder = button.render();
+                    return $elfinder;
+                });
+                // This methods will be called when editor is destroyed by $('..').summernote('destroy');
+                // You should remove elements on `initialize`.
+                this.destroy = function () {
+                    this.$panel.remove();
+                    this.$panel = null;
+                };
+            }
+
+        });
+    }));
+
+    function elfinderDialog(editor) {
+        var fm = $('<div/>').dialogelfinder({
+            baseUrl: "@Url.Content("~/lib/elfinder/")",
+            url: "@Url.Action("Connector", "FileManager", new { area = "Files" })",
+
+            lang: 'vi',
+            width: 840,
+            height: 450,
+            destroyOnClose: true,
+            getFileCallback: function (files, fm) {
+                console.log(files);
+                editor.invoke('editor.insertImage', files.url);
+            },
+            commandsOptions: {
+                getfile: {
+                    oncomplete: 'close',
+                    folders: false
+                }
+            },
+            uiOptions: {
+                //toolbar configuration
+                toolbar: [
+                    ['home', 'back', 'forward', 'up', 'reload'],
+                    ['mkdir', 'mkfile', 'upload'],
+                    ['open', 'download', 'getfile'],
+                    ['undo', 'redo'],
+                    ['copy', 'cut', 'paste', 'delete'],
+                    ['duplicate', 'rename', 'edit', 'resize', 'chmod'],
+                    ['selectall', 'selectnone', 'selectinvert'],
+                    ['quicklook', 'info'],
+                    ['extract', 'archive'],
+                    ['search'],
+                    ['view', 'sort'],
+                    ['fullscreen']
+                ]
+            },
+            contextmenu: {
+                //navbarfolder menu
+                navbar: ['open', '|', 'copy', 'cut', 'paste', 'duplicate', '|', 'rm', '|', 'info'],
+
+                // current directory menu
+                cwd: ['reload', 'back', '|', 'upload', 'mkdir', 'mkfile', 'paste', '|', 'info'],
+
+                //current directory file menu
+                files: [
+                    'getfile', '|', 'open', 'quicklook', '|', 'download', '|', 'copy', 'cut', 'paste', 'duplicate', '|',
+                    'rm', '|', 'edit', 'rename', 'resize', '|', 'archive', 'extract', '|', 'info'
+                ]
+            },
+            height: '80%',
+            onlyMimes: ["image"],
+        }).dialogelfinder('instance');
+    }
+
+    function openDialog() {
+        var fm = $('<div/>').dialogelfinder({
+            baseUrl: "@Url.Content("~/lib/elfinder/")",
+            url: "@Url.Action("Connector", "FileManager", new { area = "Files" })",
+            lang: 'vi',
+            width: 840,
+            height: 450,
+            destroyOnClose: true,
+            closeOnEditorCallback: true,
+            getFileCallback: function (files) {
+                document.getElementById('file_input').value = files.url;
+            },
+            commandsOptions: {
+                getfile: {
+                    oncomplete: 'close',
+                    folders: false
+                }
+            },
+            uiOptions: {
+                //toolbar configuration
+                toolbar: [
+                    ['home', 'back', 'forward', 'up', 'reload'],
+                    ['mkdir', 'mkfile', 'upload'],
+                    ['open', 'download', 'getfile'],
+                    ['undo', 'redo'],
+                    ['copy', 'cut', 'paste', 'delete'],
+                    ['duplicate', 'rename', 'edit', 'resize', 'chmod'],
+                    ['selectall', 'selectnone', 'selectinvert'],
+                    ['quicklook', 'info'],
+                    ['extract', 'archive'],
+                    ['search'],
+                    ['view', 'sort'],
+                    ['fullscreen']
+                ]
+            },
+            contextmenu: {
+                //navbarfolder menu
+                navbar: ['open', '|', 'copy', 'cut', 'paste', 'duplicate', '|', 'rm', '|', 'info'],
+
+                // current directory menu
+                cwd: ['reload', 'back', '|', 'upload', 'mkdir', 'mkfile', 'paste', '|', 'info'],
+
+                //current directory file menu
+                files: [
+                    'getfile', '|', 'open', 'quicklook', '|', 'download', '|', 'copy', 'cut', 'paste', 'duplicate', '|',
+                    'rm', '|', 'edit', 'rename', 'resize', '|', 'archive', 'extract', '|', 'info'
+                ]
+            },
+            onlyMimes: ["image"],
+        }).dialogelfinder('instance');
+    }
+
+
+    $(document).ready(function () {
+        $('@Model.IDEditor').summernote({
+            height: @Model.height,
+            toolbar: @Html.Raw(Model.toolbar)
+        });
+    });  
+</script>

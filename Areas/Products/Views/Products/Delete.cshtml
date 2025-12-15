@@ -1,0 +1,60 @@
+@model ProductModel
+<div class="container-fluid">
+    <div class="row">
+        <div class="card rounded mb-0 w-100">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb text-dark bg-white mb-0">
+                    <li class="px-2 text-dark"><a href="#">Trang chủ <i class="fa-solid fa-chevron-right"></i></a></li>
+                    <li class="px-2 text-dark"><a href="/admin/products/index">Quản lý sản phẩm <i class="fa-solid fa-chevron-right"></i></a></li>
+                    <li class="px-2 text-dark"><a href="/admin/products/details/@Model.ProductID">Chi tiết sản phẩm <i class="fa-solid fa-chevron-right"></i></a></li>
+                    <li class="px-2 text-dark active" aria-current="page">Xóa sản phẩm</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 p-0">
+            <div class="card rounded">
+                <div class="card-body">
+                    <h3 class="text-center animation-text">Bạn muốn xóa sản phẩm này !</h3>
+                    <form  asp-area="Products" asp-controller="Products" asp-action="DeletePr" asp-route-id="@Model.ProductID">
+                        <div class="row">
+                            <div class="col l-3 box-shadow">
+                                <div class="row ">
+                                    <div class="col col-12">
+                                        <div class=" w-100 d-flex justify-content-center  p-2 h-100">
+                                            <div class="d-flex text-center align-items-center"
+                                                style="flex-direction: column;">
+                                                <img id="previewImage" height=100% width=100% src="@(Model.Image != null? Model.Image : "/images/loader.gif")"
+                                                    class=" px-2" />
+                                                <input id="fileInput" name="file" type="file" class="d-none" />
+                                            </div>
+                                        </div>
+                                    </div>
+                
+                                </div>
+                            </div>
+
+                            <div class="col l-9 box-shadow d-flex align-items-center p-5    ">
+                                <div class="row ">
+                                    <div class="col col-12 mb-4 text-center">
+                                        <h4><a asp-area="Products" asp-controller="Products" asp-action="Details" asp-route-id="@Model.ProductID" >@Model.Title</a> </h4>
+                                    </div>
+
+                                    <div class="col col-12">
+                                        <div class="d-flex justify-content-around">
+                                            <button type="submit" class="text-white form-submit button bg-danger box-shadow px-4 ">Xóa</button>
+                                            <a asp-area="Products" asp-controller="Products" asp-action="Details" asp-route-id="@Model.ProductID"  class="text-white form-submit button bg-white text-dark box-shadow px-4 ">Quay lại</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

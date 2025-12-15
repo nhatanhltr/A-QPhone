@@ -1,0 +1,65 @@
+:root {
+    --bg-client: #D55A2A;
+}
+.c-mh-100 {
+  min-height: 100px;
+}
+
+.c-transparent-bg {
+  background-color: rgba(0, 0, 0, 0);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+}
+.c-boxshow {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3)
+}
+
+.c-btn-yes {
+  background-color: var(--bg-client);
+  color: white;
+}
+
+.c-btn-yes,
+.c-btn-no {
+  font-weight: 500;
+  padding: 5px 20px;
+  border-radius: 5px;
+  border: none;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
+
+}
+
+.c-btn-yes:hover,
+.c-btn-no:hover {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+  background-color: var(--bg-client);
+  color: white;
+}
+.c-cursor-poiter{
+  cursor: pointer;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.4);
+}
+.c-cursor-poiter:hover{
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+
+}
+.c-font-weight{
+  font-weight:600;
+}
+
+.c-w-55{
+  width: 55%;
+}
+.c-w-45{
+  width: 45%;
+}
+.c-form{
+  position:fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S-phone</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <link rel="stylesheet" href="~/css/validateform.css">
+    <link href="~/css/style.css" rel="stylesheet">
+    <link href="~/css/custom.css" rel="stylesheet">
+    <link href="~/css/loading.css" rel="stylesheet">
+    <link href="~/css/site.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/styleClient.css">
+    <link rel="stylesheet" href="~/css/grid.css">
+ 
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <link rel="stylesheet" href="~/lib/multiple-select/dist/multiple-select.min.css">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="20x20" href="~/images/logo_title.png">
+
+    @* <link rel="stylesheet" href="~/plugins/chartist/css/chartist.min.css">
+    <link rel="stylesheet" href="~/plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css"> *@
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+
+</head>
+
+<body>
+    @await Component.InvokeAsync("HeaderClient")
+    <div class="position content-body ml-0 bg-white" style=" margin-top: 60px;">
+        @RenderBody()
+    </div>
+
+    <script src="~/js/global.js" type="module"> </script>
+
+    <script src="~/lib/axios/dist/axios.min.js"></script>
+    <script src="~/plugins/common/common.min.js"></script>
+    <script src="~/js/custom.min.js"></script>
+    <script src="~/js/settings.js"></script>
+    <script src="~/js/gleek.js"></script>
+    <script src="~/js/styleSwitcher.js"></script> 
+    <script src="~/lib/multiple-select/dist/multiple-select.min.js"></script>
+</body>
+
+</html>

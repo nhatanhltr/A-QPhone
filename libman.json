@@ -1,0 +1,18 @@
+{
+    "version": "1.0",
+    "defaultProvider": "cdnjs",
+    "libraries": [
+      {
+        "library": "jqueryui@1.13.2",
+        "destination": "wwwroot/lib/jqueryui"
+      },
+      {
+        "library": "elfinder@2.1.59",
+        "destination": "wwwroot/lib/elfinder"
+      },
+      {
+        "library": "summernote@0.8.18",
+        "destination": "wwwroot/lib/summernote"
+      }
+    ]
+  }

@@ -1,0 +1,152 @@
+﻿@model dynamic
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Swiper demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <!-- Demo styles -->
+    <style>
+        html,
+        body {
+            position: relative;
+            height: 100%;
+        }
+
+        .swiper {
+            width: 100%;
+            height: 100%;
+        }
+
+        .swiper-slide {
+            text-align: center;
+        @*font-size:18px;*@background: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 0.5rem rgba(0, 0, 0, .3);
+        }
+
+        .swiper-slide img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Swiper -->
+    <div class="grid wide">
+
+        @foreach (var name in Model)
+        {
+            <div class="swiper mySwiper grid wide py-3">
+                <h2>@name.Name</h2>
+                <div class="swiper-wrapper col col-12 ">
+                    @foreach (var i in name.SalesNames)
+                    {
+                        <div class="swiper-slide">
+                            <div class="tablet-item ">
+                                <div class="product-discount @(i.productModel.PriceOld ==0 ? "d-none" : "")">@Functions.Discount(i.productModel.Price,
+                            i.productModel.PriceOld)%</div>
+                                <a class="id-pr" asp-controller="ProductsClient" asp-action="Details" asp-route-slug="@i.productModel.Slugp"
+                                    class="tablet-link">
+                                    <div class="d-flex justify-content-center"><img src="@i.productModel.Image" class="w-75">
+                                    </div>
+                                    <div>
+                                        <h3 class="product-heading tablet">@i.productModel.Title</h3>
+
+                                        <div class="product-price tablet align-items-baseline">
+                                            <sapn class="price-new ">Giá: @Functions.VNĐ(i.productModel.Price) đ</sapn>
+                                            <sapn class="price-old @(i.productModel.PriceOld == 0 ?"d-none": "")">@Functions.VNĐ(i.productModel.PriceOld)
+                                                đ</sapn>
+                                        </div>
+                                    </div>
+                                    <div class="product-describe tablet d-flex flex-column">
+                                        <span class="decribe-text float-left">
+                                            Mô tả thông tin sản phẩm
+                                        </span>
+                                        <span class="decribe-text float-left">
+                                            Mô tả thông tin sản phẩm
+                                        </span>
+                                    </div>
+                                </a>
+                                <div class="product-heart tablet">
+                                    <span class="decribe-text">
+                                        <i class="ti-heart"></i>
+                                    </span>
+
+                                    <div class="product-animation">
+                                        @if (i.productModel.Inventory == 0)
+                                        {
+                                            <div class="product-add " style="width:120px">
+                                                <b class="text-red" style="line-height: 2;"><i
+                                                        class="fa-regular fa-circle-xmark mr-1"></i>Hết hàng</b>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <button class="product-add add-cart text-white">
+                                                <i class="fa-solid fa-cart-shopping"></i>
+                                            </button>
+                                        }
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-pagination"></div>
+            </div>
+        }
+
+    </div>
+    <div id="toast"></div>
+    @Html.AntiForgeryToken()
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script type="module" src="~/js/Products/AddCart.js"></script>
+
+    <!-- Initialize Swiper -->
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+            slidesPerView: 6,
+            spaceBetween: 15,
+            @* centeredSlides: true, *@
+            loop: true,
+            pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+
+            navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev"
+        },
+            autoplay: {
+            delay: 2000,
+            disableOnInteraction: true
+        }
+        });
+        @* var s = document.querySelector('.swiper-wrapper');
+        s.addEventListener('mouseenter', function () {
+            swiper.autoplay.stop();
+        });
+        s.addEventListener('mouseleave', function () {
+            swiper.autoplay.start()
+        }); *@
+    </script>
+</body>
+
+</html>

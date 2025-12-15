@@ -1,0 +1,82 @@
+@model List<CartItem>
+@{
+    Layout = "_LayoutClient";
+}
+@Html.AntiForgeryToken()
+
+<div class="grid wide">
+    <div class="d-flex justify-content-center p-3">
+        <div class="d-flex align-items-center"><i class="ti-arrow-left "></i></div>
+        <h3 class="text-center ">Giỏ hàng của bạn</h3>
+    </div>
+
+    @if (Model.Count > 0)
+    {
+        decimal total = 0;
+        int stt = 1;
+        <table class="table  text-center bg-white "
+            style="box-shadow: rgba(0, 0, 0, 0.35) 0px 0px 5px; border-radius: 10px;">
+            <tr>
+                <th>
+                    <div>
+                        <input type="checkbox" id="select-all" />
+                        <label for="select-all"> Tất cả</label>
+                    </div>
+                </th>
+                <th>Hình ảnh</th>
+                <th>Sản phẩm</th>
+                <th>Giá</th>
+                <th>Số lượng</th>
+                <th>Chức năng</th>
+            </tr>
+            @foreach (var cartitem in Model)
+            {
+                <tr>
+                    <td><input type="checkbox" class="product-checkbox box-shadow " data-price="@cartitem.product.Price" /></td>
+
+                    <td><a class="id-pr" asp-action="Details" asp-controller="ProductsClient"
+                            asp-route-slug="@cartitem.product.Slugp"><img height="70" src="@cartitem.product.Image" alt=""></a>
+                    </td>
+                    <td><a class="id-pr" asp-action="Details" asp-controller="ProductsClient"
+                            asp-route-slug="@cartitem.product.Slugp">@cartitem.product.Title</a></td>
+                    <td class="text-danger">@(cartitem.product.Price.ToString("n0"))</td>
+                    <td> <button class="quantity-control p-1 border-0 bg-transparent rounded" data-action="decrease"
+                            data-target="@($"quantity-{cartitem.product.ProductID}")">
+                            <i class="fa-solid fa-minus"></i>
+                        </button>
+                        <input asp-for="@cartitem.quantity" class="text-center border-0 w-25 p-1 quantity-input"
+                            value="@cartitem.quantity" min="1" id="@($"quantity-{cartitem.product.ProductID}")"
+                            readonly />
+                        <button data-id="@cartitem.product.Inventory"  class="quantity-control p-1 border-0 rounded bg-transparent" data-action="increase"
+                            data-target="@($"quantity-{cartitem.product.ProductID}")">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                    </td>
+                    <td>
+                        <a asp-route="removecart" asp-route-productid="@cartitem.product.ProductID"
+                            class=" p-1 box-shadow btn-danger"><i class="fa-solid fa-trash"></i></a>
+                    </td>
+                </tr>
+            }
+
+        </table>
+        <div class="p-4 buy">
+            <div class="box-buy ">
+                <div class="d-flex justify-content-between align-items-center w-100">
+                    <button class="btn-checkout p-2 box-shadow text-white btn-success" disabled>Mua hàng</button>
+                    <div>Số lượng: <b class="sumPr">0</b></div>
+                    <div>Tạm tính:
+                        <b class="text-danger" id="total-price">0 đ</b>
+                    </div>
+                    <td></td>
+                </div>
+            </div>
+        </div>
+        <div id="toast"></div>
+        <script type="module" src="~/js/Products/AddCart.js"></script>
+    }
+    else
+    {
+        <p class="alert alert-danger">Giỏ hàng trống</p>
+    }
+</div>

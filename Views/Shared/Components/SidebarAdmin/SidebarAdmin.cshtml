@@ -1,0 +1,29 @@
+@model IList<MenuAdminModel>
+
+<div class="nk-sidebar">
+    <div class="nk-nav-scroll" >
+        <ul class="metismenu" id="menu">
+            @foreach (var i in Model.OrderBy(m=> m.MenuOrder))
+            {
+                <li class=""  >
+
+                    @if (i.ParentMenuId == null)
+                    {
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                           <i class="@i.Areas mr-1"></i> <span class="nav-text"> @i.Name</span>
+                        </a>
+                    }
+                    <ul aria-expanded="false" style="">
+                        @foreach (var child in Model.OrderBy(ch=> ch.Position))
+                        {
+                            if (i.ID == child.ParentMenuId && child.ParentMenuId != null)
+                            {
+                                <li  ><a class="text-short" href="@child.Link" ><i class="@child.Areas"></i>@child.Name</a></li>
+                            }
+                        }
+                    </ul>
+                </li>
+            }
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <!-- theme meta -->
+    <meta name="theme-name" content="quixlab" />
+    <title>ONE_PHONE</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="20x20" href="~/images/logo_title.png">
+    <link href="~/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/validateform.css">
+    <link rel="stylesheet" href="~/css/custom.css">
+    <link rel="stylesheet" href="~/css/loading.css">
+    <link rel="stylesheet" href="~/css/site.min.css">
+    <link rel="stylesheet" href="~/css/grid.css">
+    <link rel="stylesheet" href="~/lib/multiple-select/dist/multiple-select.min.css">
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+</head>
+
+<body>
+    <div id="main-wrapper">
+        <div class="nav-header c-z-index-1" style="position:fixed; top:0">
+            <div class="brand-logo">
+                <a href="/admin/dashboard/index">
+                    <b class="logo-abbr"><img src="~/images/logo_nav_left.png" alt=""> </b>
+                    <span class="logo-compact"><img src="~/images/logo_nks.png" alt=""></span>
+                    <span class="brand-title">
+                        <img src="~/images/logo_nks.png" alt="">
+                    </span>
+                </a>
+            </div>
+        </div>
+        @await Component.InvokeAsync("HeaderAdmin")
+        @await Component.InvokeAsync("SidebarAdmin")
+        <div class="content-body">
+            @RenderBody()
+        </div>
+        <script src="~/plugins/common/common.min.js"></script>
+        <script src="~/js/custom.min.js"></script>
+        <script src="~/js/settings.js"></script>
+        <script src="~/js/gleek.js"></script>
+        <script src="~/lib/multiple-select/dist/multiple-select.min.js"></script>
+        <script src="~/lib/axios/dist/axios.min.js"></script>
+
+</body>
